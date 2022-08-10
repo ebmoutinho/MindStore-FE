@@ -54,7 +54,7 @@ function handleRegisterNewUser(event) {
         </form>
         <p>
             Already have an account?
-            <a href=""> Login here</a>
+            <a href="#"> Login here</a>
         </p>
     </>
   )
