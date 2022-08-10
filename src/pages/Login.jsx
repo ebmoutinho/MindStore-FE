@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 
 function Login() {
-    const username = useRef();
+    const email = useRef();
     const password = useRef();
 
     function handleSubmit(event) {
@@ -10,7 +10,7 @@ function Login() {
         // const request = {
         //     method: 'GET',
         //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify({username: username.current.value, password: password.current.value}),
+        //     body: JSON.stringify({email: email.current.value, password: password.current.value}),
         // }
 
         // // add async to function
@@ -18,20 +18,20 @@ function Login() {
         // const json = await response.json();
 
 
-        console.log("Username: " + username.current.value);
+        console.log("Email: " + email.current.value);
         console.log("Password: " + password.current.value);
     }
 
     return (
         <div className='container'>
             <div>
-                <h1>Login</h1>
+                <h2>Login</h2>
                 <hr />
             </div>
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="login">
-                    <input type="text" name="login" placeholder="Username" ref={username} required/>
+                    <input type="text" name="login" placeholder="Email" ref={email} required/>
                 </label>
 
                 <label htmlFor="password">
