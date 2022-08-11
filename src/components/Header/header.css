@@ -57,10 +57,6 @@ nav {
     font-weight: 800;
 }
 
-/* .clicked1, .clicked2, .clicked3 {
+.active {
     color: var(--primary-color);
 }
-
-.loginpage:visited {
-    color: var(--primary-color);
-} */

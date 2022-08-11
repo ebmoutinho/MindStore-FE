@@ -2,12 +2,21 @@ import React, { useRef } from 'react'
 import Header from '../../components/Header/Header';
 import "./credentials.css";
 import { Link } from "react-router-dom";
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 
 //autoComplete='off'
 function Login() {
     const email = useRef();
     const password = useRef();
+    const [loginColor, setLoginColor] = useState(false);
+
+    useEffect(() => {
+        setLoginColor(true);
+    }, []);
+
+
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -29,7 +38,7 @@ function Login() {
 
     return (
         <>
-            <Header />
+           <Header loginColor={loginColor} />
             <div className='container'>
                 <div className='title'>
                     <h2>Login</h2>

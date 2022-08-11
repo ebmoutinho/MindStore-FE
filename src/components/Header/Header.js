@@ -2,7 +2,8 @@ import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./header.css";
 
-function Header() {
+function Header(props) {
+    const { loginColor, registerColor } = props;
 	const inputSearch = useRef("");
 
 
@@ -35,9 +36,9 @@ function Header() {
                         <input className="search-div" type="text" placeholder='Search' ref={inputSearch} onKeyPress={handleEnterPress} />
                     </label>
                     <div className='links-div'>
-                        <Link to="/login" >Login</Link>
-                        <Link to="/register" >Register</Link>
-                        <Link to="/cart" >Cart</Link>
+                        <Link to="/login" className={loginColor? "active" : ""}>Login</Link>{/*url do site*/}
+                        <Link to="/register" className={registerColor? "active" : ""}>Register</Link>{/*url do site*/}
+                        <Link to="/cart">Cart</Link>{/*url do site*/}
                     </div>
                 </nav>
             </header>
