@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 
 function Register() {
@@ -10,6 +10,11 @@ function Register() {
 	const address = useRef("");
 	const phone = useRef("");
 	const profilePhoto = useRef("");
+    const [registerColor, setRegisterColor] = useState(false);
+
+	useEffect(() => {
+        setRegisterColor(true);
+    }, []);
 
 	function handleRegisterNewUser(event) {
 		event.preventDefault();
@@ -18,7 +23,7 @@ function Register() {
 
 	return (
 		<>
-			<Header />
+			<Header registerColor={registerColor} />
 			<h2>Register new user</h2>
 			<form onSubmit={handleRegisterNewUser}>
 				<label>

@@ -52,3 +52,7 @@ nav {
 .bold {
     font-weight: 800;
 }
+
+.active {
+    color: var(--primary-color);
+}
