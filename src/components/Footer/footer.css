@@ -6,7 +6,7 @@
     padding: 8px 0;
     display: flex;
     justify-content: space-between;
-    /* background-color: #D4937F; */
+    /* background-color: var(--primary-color); */
     background-color: white;
 
 }

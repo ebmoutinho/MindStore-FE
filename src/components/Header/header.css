@@ -38,7 +38,7 @@ nav {
 
 .search-div:focus {
     outline: none;
-    border-bottom: 1px solid #D4937F;
+    border-bottom: 1px solid var(--primary-color);
 }
 
 .links-div a {
@@ -46,7 +46,7 @@ nav {
 }
 
 .links-div a:hover {
-    color: #D4937F;
+    color: var(--primary-color);
 }
 
 .bold {

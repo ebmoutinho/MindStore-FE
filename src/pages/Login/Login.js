@@ -1,5 +1,7 @@
 import React, { useRef } from 'react'
 import Header from '../../components/Header/Header';
+import "./login.css";
+import { Link } from "react-router-dom";
 
 function Login() {
     const email = useRef();
@@ -27,26 +29,25 @@ function Login() {
         <>
             <Header />
             <div className='container'>
-                <div>
+                <div className='title'>
                     <h2>Login</h2>
-                    <hr />
                 </div>
 
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="login">
-                        <input type="text" name="login" placeholder="Email" ref={email} required/>
+                <form className='form' onSubmit={handleSubmit}>
+                    <label className='label' htmlFor="login">
+                        <input autoFocus autoComplete='off' type="text" name="login" placeholder="Email" ref={email} required/>
                     </label>
 
-                    <label htmlFor="password">
+                    <label className='label' htmlFor="password">
                         <input type="password" name="password" placeholder="Password" ref={password} required/>
                     </label>
-                    <button type="submit">Login</button>
+                    <button className="button" type="submit">Login</button>
                 </form>
-                <p>
-                    Don't have an account?
-                    <a href="#">
+                <p className='footer-text'>
+                    Don't have an account? &nbsp;
+                    <Link to="/register" href="#">
                         Register Here
-                    </a>
+                    </Link>
                 </p>
             </div>
         </>
