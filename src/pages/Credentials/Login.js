@@ -1,8 +1,10 @@
 import React, { useRef } from 'react'
 import Header from '../../components/Header/Header';
-import "./login.css";
+import "./credentials.css";
 import { Link } from "react-router-dom";
 
+
+//autoComplete='off'
 function Login() {
     const email = useRef();
     const password = useRef();
@@ -35,7 +37,7 @@ function Login() {
 
                 <form className='form' onSubmit={handleSubmit}>
                     <label className='label' htmlFor="login">
-                        <input autoFocus autoComplete='off' type="text" name="login" placeholder="Email" ref={email} required/>
+                        <input autoFocus type="text" name="login" placeholder="Email" ref={email} required/>
                     </label>
 
                     <label className='label' htmlFor="password">
@@ -44,10 +46,8 @@ function Login() {
                     <button className="button" type="submit">Login</button>
                 </form>
                 <p className='footer-text'>
-                    Don't have an account? &nbsp;
-                    <Link to="/register" href="#">
-                        Register Here
-                    </Link>
+                    Don't have an account?
+                    <Link to="/register" href="#"> Register here</Link>
                 </p>
             </div>
         </>

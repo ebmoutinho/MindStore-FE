@@ -46,9 +46,21 @@ nav {
 }
 
 .links-div a:hover {
-    color: var(--primary-color);
+    color: var(--light-grey);
 }
+
+/* .links-div a:visited {
+    color: var(--primary-color);
+} */
 
 .bold {
     font-weight: 800;
 }
+
+/* .clicked1, .clicked2, .clicked3 {
+    color: var(--primary-color);
+}
+
+.loginpage:visited {
+    color: var(--primary-color);
+} */

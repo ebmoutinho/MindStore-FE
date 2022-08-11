@@ -1,7 +1,6 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./header.css";
-//🛍
 
 function Header() {
 	const inputSearch = useRef("");
@@ -12,6 +11,18 @@ function Header() {
             console.log(inputSearch.current.value, 'enter press here! ')
         }
     }
+
+    // function handleLoginPageClick() {
+    //     setIsClickedLogin(true);
+    // }
+
+    // function handleRegisterPageClick() {
+    //     setIsClickedRegister(true);
+    // }
+
+    // function handleCartPageClick() {
+    //     setIsClickedCart(true);
+    // }
 
 
     return (
@@ -24,9 +35,9 @@ function Header() {
                         <input className="search-div" type="text" placeholder='Search' ref={inputSearch} onKeyPress={handleEnterPress} />
                     </label>
                     <div className='links-div'>
-                        <Link to="/login">Login</Link>{/*url do site*/}
-                        <Link to="/register">Register</Link>{/*url do site*/}
-                        <Link to="/cart">Cart</Link>{/*url do site*/}
+                        <Link to="/login" >Login</Link>
+                        <Link to="/register" >Register</Link>
+                        <Link to="/cart" >Cart</Link>
                     </div>
                 </nav>
             </header>
