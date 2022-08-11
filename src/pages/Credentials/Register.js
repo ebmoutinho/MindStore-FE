@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import Header from "../../components/Header/Header";
 import "./credentials.css";
 import { Link }	 from "react-router-dom";
+import { useEffect } from "react";
 
 function Register() {
 	const name = useRef("");
@@ -13,6 +14,11 @@ function Register() {
 	const phone = useRef("");
 	const profilePhoto = useRef("");
 	const [isVarTrue, setIsVarTrue] = useState(true);
+	const [registerColor, setRegisterColor] = useState(false);
+
+	useEffect( () => {
+		setRegisterColor(true);
+	}, []);
 
 	function handleRegisterNewUser(event) {
 		event.preventDefault();
@@ -23,10 +29,9 @@ function Register() {
 		setIsVarTrue(false);
 	}
 
-
 	return (
 		<>
-			<Header />
+			<Header registerColor={registerColor} />
 			<div className='container'>
 				<div className='title'>
 						<h2>Register</h2>
@@ -51,8 +56,6 @@ function Register() {
 						<input type="tel" name="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" placeholder="Phone Number" minLength={9} maxLength={9} ref={phone} required />
 					</label>
 					<label className='label'>
-						{/* <input type="image" alt="Profile Image"
-						src="/media/examples/login-button.png"></input> */}
 						<input type="url" name="url" id="url" placeholder="https://photo-example.com" pattern="https://.*" size="30" ref={profilePhoto} required></input>
 					</label>
 					<button className="button" type="submit">Register</button>
