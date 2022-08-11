@@ -18,10 +18,6 @@ nav {
     font-size: 20px;
 }
 
-.links-div a {
-    padding-left: 20px;
-}
-
 .search-div {
     /* margin-bottom: 9px; */
     margin-left: 500px;
@@ -42,16 +38,29 @@ nav {
 }
 
 .links-div a {
-    transition: ease-in-out 0.2s;
+    /* transition: ease-in-out 0.2s; */
+    /* padding-left: 20px; */
+    margin-left: 20px;
+    position: relative;
 }
 
-.links-div a:hover {
-    color: var(--light-grey);
+.links-div a:before {
+    /* color: var(--light-grey); */
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
 }
 
-/* .links-div a:visited {
-    color: var(--primary-color);
-} */
+.links-div a:hover:before {
+    visibility: visible;
+    width: 100%;
+}
 
 .bold {
     font-weight: 800;
