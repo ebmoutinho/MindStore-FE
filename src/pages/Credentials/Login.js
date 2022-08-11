@@ -46,7 +46,7 @@ function Login() {
 
                 <form className='form' onSubmit={handleSubmit}>
                     <label className='label' htmlFor="login">
-                        <input autoFocus type="text" name="login" placeholder="Email" ref={email} required/>
+                        <input autoFocus autoComplete="off" type="text" name="login" placeholder="Email" ref={email} required/>
                     </label>
 
                     <label className='label' htmlFor="password">
