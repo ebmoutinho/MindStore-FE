@@ -52,6 +52,9 @@ function Filter() {
     }; //FilterMainButton
     function handleFilterClick() {
         setIsFilterClicked(!isFilterClicked);
+        setIsCategoryClicked(false); //para fechar as opcoes do botao quando abro e fecho o filter(principal)
+        setIsRatingClicked(false);
+        setIsPriceClicked(false);
         console.log("filter");
     };
 
