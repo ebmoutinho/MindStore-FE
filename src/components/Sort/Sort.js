@@ -1,31 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function Sort() {
+    const [choice, setChoice] = useState(false);
+
+    function handleChange(e) {
+        console.log(e.target.value)
+    }
+
     function handleClick() {
-        return (
-            <div>
-                <ul>
-                    <li>
-                        <label htmlFor="asc">
-                            <input type="radio" name='asc' />
+        setChoice(!choice);
+    }
+
+    function SortOptions() {
+        if (choice === true) {
+            return (
+                <div>
+                     <form> 
+                        <label htmlFor="ascending">
+                            <input type="radio" name='sort' onChange={handleChange} value="asc" />
                             Ascending Order
                         </label>
-                    </li>
 
-                    <li>
-                        <label htmlFor="asc">
-                            <input type="radio" name='asc' />
+                        <label htmlFor="descending">
+                            <input type="radio" name='sort' onChange={handleChange} value="desc"/>
                             Descending Order
                         </label>
-                    </li>
-                </ul>
-            </div>
-        )
+                    </form>
+                </div>
+            )
+        }
+        return;
     }
+
 
     return (
         <>
             <button onClick={handleClick}>Sort By</button>
+            <SortOptions />
         </>
     )
 }
