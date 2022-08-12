@@ -1,0 +1,19 @@
+.filter-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.category-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.rating-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.price-form {
+    display: flex;
+    flex-direction: column;
+}
