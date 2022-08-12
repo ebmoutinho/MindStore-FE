@@ -1,6 +1,7 @@
 .product-list-container {
     display: flex;
     flex-wrap: wrap;
+    background-color: black;
 }
 
 .product-grid {

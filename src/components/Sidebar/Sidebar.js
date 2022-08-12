@@ -4,7 +4,7 @@ import Sort from '../Sort/Sort';
 
 function Sidebar() {
   return (
-    <div className='filter'>
+    <div className='sidebar'>
       <Sort />
     </div>
   )

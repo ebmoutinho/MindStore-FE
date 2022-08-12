@@ -38,6 +38,7 @@ function Header(props) {
                     <div className='links-div'>
                         <Link to="/login" className={loginColor? "active" : ""}>Login</Link>{/*url do site*/}
                         <Link to="/register" className={registerColor? "active" : ""}>Register</Link>{/*url do site*/}
+                        <Link to="/productlistpage">Product</Link>
                         <Link to="/cart">Cart</Link>{/*url do site*/}
                     </div>
                 </nav>

@@ -36,7 +36,7 @@ function Sort() {
     return (
         <>
             <button onClick={handleClick}>Sort By</button>
-            <SortOptions />
+            <SortOptions /> {/*consoante true or false, mostra form ou só botao */}
         </>
     )
 }
