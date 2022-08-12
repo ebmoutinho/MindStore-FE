@@ -1,23 +1,46 @@
 import React from "react";
 import "./product.css";
+// import { useState } from "react"
 import heartEmpty from "../../assets/heart-empty.png";
-import heartFull from "../../assets/heart-full.png";
+import { useEffect } from "react";
 
-function Product() {
+function Product(props) {
+	const { productProp } = props;
+	// const [productData, setProductData] = useState("");
+
+	useEffect( () => {
+		async function fetchASingleProduct() {
+			const request = {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					// 'Authorization': fetchedToken,
+				},
+			};
+	
+			const response = await fetch(`https://fakestoreapi.com/products/${productProp.id}`, request);
+			const product = await response.json();
+	
+			// setProductData(product);
+			console.log("booksData: ", product); 
+		};
+		fetchASingleProduct();
+	}, []);
+
 	return (
 		<>
 			<div className="product-container">
 				<div className="product-image">
 					<a href="#">
-						<img className="product-photo" src="https://picsum.photos/id/237/200/300" alt="picsum" />
+						<img className="product-photo" src={productProp.image} alt="picsum" />
 					</a>
 					<button className="product-button">
 						<img src={heartEmpty} alt="" />
 					</button>
 				</div>
 				<div className="product-description">
-					<p className="product-name">Product name</p>
-					<p className="product-price">125€</p>
+					<p className="product-name">{productProp.title}</p>
+					<p className="product-price">{productProp.price}€</p>
 				</div>
 			</div>
 		</>
