@@ -1,14 +1,14 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import "./filter.css";
+import RangeBar from "../RangeBar/RangeBar";
 
 function Filter() {
 	const [isFilterClicked, setIsFilterClicked] = useState(false);
 	const [isCategoryClicked, setIsCategoryClicked] = useState(false);
 	const [isRatingClicked, setIsRatingClicked] = useState(false);
 	const [isPriceClicked, setIsPriceClicked] = useState(false);
-	const [range, setRange] = useState("");
-	const rangeRef = useRef("");
+	// const [value, setValue] = useState(0);
 
 	function FilterMainButton() {
 		// function handleFilterChange(event) {
@@ -31,7 +31,9 @@ function Filter() {
 			return (
 				//form
 				<>
-					<form className="filter-form">
+					{/* <form className="filter-form"> */}
+                        
+						
 						<label>
 							<button name="filter" onClick={handleCategoryClick} value="category">
 								Category
@@ -52,7 +54,7 @@ function Filter() {
 							</button>
 						</label>
 						<PriceButton />
-					</form>
+					{/* </form> */}
 				</>
 			);
 		} else {
@@ -144,9 +146,7 @@ function Filter() {
 	}
 
 	function PriceButton() {
-		function handlePriceChange(event) {
-			console.log(event.target.value);
-		}
+
 
 		// function handleRangeChange(event) {
 		// 	setRange(event.target.value);
@@ -157,21 +157,12 @@ function Filter() {
 		if (isPriceClicked) {
 			return (
 				<div>
-					<form className="price-form-range">
-						<label>
-							{/* <input type="range" value={range} min="1" max="100" onChange={handleRangeChange}/>
-                            <input type="range" value={range} min="1" max="100" step="2" onChange={handleRangeChange}/>
-                            <input type="range" min="1" max="100" onChange={handleRangeChange} />
-                            <input type="range" min="1" max="100" />
-                            <input type="range" min="1" max="100" onInput={handleRangeChange} />
-                            <input type="text" />
-                            <output>{range}</output> */}
-							<input type="range" min="0" max="5" value={range} onChange={(e) => setRange(e.target.value)} step="1" />
-                            {range}
-						</label>
-					</form>
+                    <RangeBar />
+                    {/* <input type="range" min="0" max="5" value={value} onChange={(e) => setValue(e.target.value)} />
+                        {value}
+						 */}
 
-					<form className="price-form">
+					{/* <form className="price-form">
 						<label>
 							<input type="radio" name="price" onChange={handlePriceChange} value="price from 0 to 10" />
 							0€ to 10€
@@ -206,7 +197,7 @@ function Filter() {
 							<input type="radio" name="price" onChange={handlePriceChange} value="more than 500" />
 							more than 500€
 						</label>
-					</form>
+					</form> */}
 				</div>
 			);
 		} else {
@@ -218,6 +209,8 @@ function Filter() {
 		<>
 			<button onClick={handleFilterClick}>Filter by</button>
 			<FilterMainButton />
+            {/* <input type="range" min="0" max="5" value={value} onChange={(e) => setValue(e.target.value)} />
+                        {value} */}
 		</>
 	);
 }
