@@ -27,24 +27,19 @@ function Filter() {
 
         if(isFilterClicked) {
             return( //form
-            <>
                 <form className='filter-form'>
                     <label>
                         <button name="filter" onClick={handleCategoryClick} value="category">Category</button>
                     </label>
-                    <CategoryButton />
 
                     <label>
                        <button name="filter" onClick={handleRatingClick} value="rating">Rating</button>
                     </label>
-                    <RatingButton />
 
                     <label>
                       <button name="filter" onClick={handlePriceClick} value="price">Price</button>
                     </label>
-                    <PriceButton />
                 </form>
-            </>
             ) 
         } else {
             return;
@@ -93,65 +88,10 @@ function Filter() {
     };
 
     function RatingButton() {
-        function handleRatingChange(event) {
-            console.log(event.target.value);
-        };
-
-        if(isRatingClicked) {
-            return(
-                <div>
-                    <form className='rating-form'>
-                        <label>
-                            <input type="radio" name="rating" onChange={handleRatingChange} value="rating from 0 to 1"/>
-                            0 - 1
-                        </label>
-
-                        <label>
-                            <input type="radio" name="rating" onChange={handleRatingChange} value="rating from 1.1 to 2"/>
-                            1.1 - 2
-                        </label>
-
-                        <label>
-                            <input type="radio" name="rating" onChange={handleRatingChange} value="rating from 2.1 to 3"/>
-                            2.1 - 3
-                        </label>
-
-                        <label>
-                            <input type="radio" name="rating" onChange={handleRatingChange} value="rating from 3.1 to 4"/>
-                            3.1 - 4
-                        </label>
-
-                        <label>
-                            <input type="radio" name="rating" onChange={handleRatingChange} value="rating from 4.1 to 5"/>
-                            4.1 - 5
-                        </label>
-                    </form>
-                </div>
-            );
-        } else {
-            return;
-        }
         
     };
 
     function PriceButton() {
-        function handlePriceChange(event) {
-            console.log(event.target.value);
-        };
-
-        if(isPriceClicked) {
-            return (
-                <div>
-                    <form className='price-form'>
-                        <label>
-                            <input type="radio" name="price" onChange={handlePriceChange} value="price from 0 to "/>
-                        </label>
-                    </form>
-                </div>
-            );
-        } else {
-            return;
-        }
         
     };
     
@@ -160,7 +100,9 @@ function Filter() {
     <>
         <button onClick={handleFilterClick}>Filter by</button>
         <FilterMainButton />
-
+        <CategoryButton />
+        <RatingButton />
+        <PriceButton />
     </>
   )
 }
