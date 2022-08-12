@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import "./sort.css";
 
 function Sort() {
     const [choice, setChoice] = useState(false);
@@ -15,7 +16,7 @@ function Sort() {
         if (choice === true) {
             return (
                 <div>
-                     <form> 
+                     <form className='sort-form'> 
                         <label htmlFor="ascending">
                             <input type="radio" name='sort' onChange={handleChange} value="asc" />
                             Ascending Order
