@@ -10,11 +10,11 @@ function ProductListPage() {
     const [productPageColor, setProductPageColor] = useState(false);
     const [allProducts, setAllProducts] = useState([]);
 
-    useEffect( () => {
-		setProductPageColor(true);
-	}, []);
+    useEffect(() => {
+        setProductPageColor(true);
+    }, []);
 
-    useEffect( () => {
+    useEffect(() => {
         async function fetchAllProducts() {
             const request = {
                 method: "GET",
@@ -33,17 +33,17 @@ function ProductListPage() {
         fetchAllProducts();
     }, []);
 
-        const myArray = allProducts.map( (product) => {
-            return (
-                <Product productProp={product}/> 
-            )
-        });
+    const myArray = allProducts.map((product, index) => {
+        return (
+            <Product key={index} productProp={product} />
+        )
+    });
 
     return (
         <>
-            <Header productPageColor={productPageColor}/>
+            <Header productPageColor={productPageColor} />
             <div className='product-list-container'>
-                <Sidebar className="sidebar"/>
+                <Sidebar className="sidebar" />
                 <div className='product-grid'>
                     {/* <Product />
                     <Product />
@@ -51,7 +51,7 @@ function ProductListPage() {
                     <Product />
                     <Product />
                     <Product /> */}
-                    { myArray }
+                    {myArray}
                 </div>
             </div>
             <Footer />
