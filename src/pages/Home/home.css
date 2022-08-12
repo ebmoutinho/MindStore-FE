@@ -41,6 +41,7 @@
     cursor: pointer;
     transition: 0.3s ease-in-out;
     font-size: 16px;
+    text-align: center;
 }
 
 .hero-body-button:hover {
@@ -93,6 +94,7 @@
     cursor: pointer;
     transition: 0.3s ease-in-out;
     font-size: 16px;
+    text-align: center;
 }
 
 .banner-body-button:hover {

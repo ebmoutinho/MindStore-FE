@@ -28,7 +28,10 @@
 
 .product-name {}
 
-.product-price {}
+.product-price {
+    color: var(--primary-color);
+    font-weight: 400;
+}
 
 .product-button {
     position: absolute;
