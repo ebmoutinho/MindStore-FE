@@ -144,7 +144,38 @@ function Filter() {
                 <div>
                     <form className='price-form'>
                         <label>
-                            <input type="radio" name="price" onChange={handlePriceChange} value="price from 0 to "/>
+                            <input type="radio" name="price" onChange={handlePriceChange} value="price from 0 to 10"/>
+                            0€ to 10€
+                        </label>
+
+                        <label>
+                            <input type="radio" name="price" onChange={handlePriceChange} value="price from 11 to 20"/>
+                            11€ to 20€
+                        </label>
+
+                        <label>
+                            <input type="radio" name="price" onChange={handlePriceChange} value="price from 21 to 50"/>
+                            21€ to 50€
+                        </label>
+
+                        <label>
+                            <input type="radio" name="price" onChange={handlePriceChange} value="price from 51 to 100"/>
+                            51€ to 100€
+                        </label>
+
+                        <label>
+                            <input type="radio" name="price" onChange={handlePriceChange} value="price from 51 to 100"/>
+                            51€ to 100€
+                        </label>
+
+                        <label>
+                            <input type="radio" name="price" onChange={handlePriceChange} value="price from 101 to 500"/>
+                            101 to 500€
+                        </label>
+
+                        <label>
+                            <input type="radio" name="price" onChange={handlePriceChange} value="more than 500"/>
+                            more than 500€
                         </label>
                     </form>
                 </div>
