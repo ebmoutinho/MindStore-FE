@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
 import heroImg from "../../assets/heroImg.jpg";
@@ -9,9 +9,23 @@ import Product from "../../components/Product/Product";
 import "./home.css";
 
 function Home() {
+    const [value, setValue] = useState(0);
     return (
         <>
             <Header />
+            <form action="">
+                <label htmlFor="">
+                    <input
+                        type="range"
+                        min="0"
+                        max="5"
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                        step="1"
+                    />
+                    {value}
+                </label>
+            </form>
             <div className="home-hero">
                 <div className="hero-body">
                     <h1 className='hero-body-title'>On Sale <i>-50%</i></h1>
