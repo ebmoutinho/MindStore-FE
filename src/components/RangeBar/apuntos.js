@@ -1,30 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from "react";
 import "./rangebar.css";
 
 function RangeBar() {
     const [valueMin, setValueMin] = useState(0);
     const [valueMax, setValueMax] = useState(0);
-    const [finalPrice, setFinalPrice] = useState({});
-
-
+    const [finalPrice, setFinalPrice] = useState([0,0]);
 
     function handleMinPriceChange(event) {
-        setValueMin(event.target.value)
-
-        setTimeout(() => {
-            console.log("min", event.target.value)
-        }, 1500);
+        // setTimeout( () => {
+            setValueMin(event.target.value);
+            setFinalPrice([valueMin, valueMax]);
+        // }, 1500);
     };
 
     function handleMaxPriceChange(event) {
-        setValueMax(event.target.value)
-
-        setTimeout(() => {
-            console.log("max", event.target.value)
-        }, 1500);
+        // setTimeout( () => {
+            setValueMax(event.target.value);
+            setFinalPrice([valueMin, valueMax]);
+        // }, 1500);
     };
-    
+
+    useEffect( () => {
+        setTimeout(() => {
+            // setFinalPrice([valueMinRef, valueMaxRef]);
+            // console.log("finalPrice", valueMinRef.current.value, valueMaxRef.current.value);
+            console.log("finalPrice", finalPrice);
+        }, 2000);
+
+    }, [finalPrice]); //imprime cada x que esta variável [] é alterada -> de 5 em 5 em cada lado
+
     
     
 
