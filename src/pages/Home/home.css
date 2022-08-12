@@ -1,5 +1,5 @@
 .home-hero {
-    margin: 40px;
+    margin: 84px 40px;
     padding: 40px;
     background-color: white;
     display: flex;
@@ -9,7 +9,7 @@
 
 .hero-body {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     width: 50%;
     margin-left: 80px;
 }
@@ -49,23 +49,29 @@
 }
 
 .home-products {
-    margin: 40px;
+    margin: 80px 40px;
 }
 
 .home-product-gallery {
-    width: 100%;
+    /* width: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: space-between; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 440px);
+    grid-gap: 20px;
+    justify-content: center;
 }
 
 .home-product-border {
-    background-color: white ;
+    background-color: white;
     border-radius: 4px;
     padding: 60px 60px 20px 60px;
+    margin-bottom: 40px;
 }
 
 .home-banner {
-    margin: 40px 400px;
+    margin: 80px 20%;
     padding: 40px;
     background-color: white;
     display: flex;
