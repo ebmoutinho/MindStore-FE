@@ -53,10 +53,6 @@
 }
 
 .home-product-gallery {
-    /* width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; */
     display: grid;
     grid-template-columns: repeat(auto-fit, 440px);
     grid-gap: 20px;
