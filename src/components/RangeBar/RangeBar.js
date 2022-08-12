@@ -1,41 +1,55 @@
-import React from 'react'
-import { useState } from "react";
-import "./rangebar.css";
+import React from "react";
+import InputRange from "react-input-range";
+import "./input-range.css"
 
-function RangeBar() {
-    const [valueMin, setValueMin] = useState(0);
-    const [valueMax, setValueMax] = useState(0);
-    const [finalPrice, setFinalPrice] = useState({});
+class RangeBar extends React.Component {
+  constructor(props) {
+    super(props);
 
-
-
-    function handleMinPriceChange(event) {
-        setValueMin(event.target.value)
-
-        setTimeout(() => {
-            console.log("min", event.target.value)
-        }, 1500);
+    this.state = {
+      value: {
+        min: 0,
+        max: 1000
+      },
     };
+  }
 
-    function handleMaxPriceChange(event) {
-        setValueMax(event.target.value)
+  seeState(evt) {
+    evt.preventDefault();
+    console.log(this.state.value);
+  }
 
-        setTimeout(() => {
-            console.log("max", event.target.value)
-        }, 1500);
-    };
-    
-    
-    
+  setMin(evt) {
+    this.setState({
+      value: { ...this.state.value, min: Number(evt.target.value) }
+    });
+  }
 
-  return (
-    <>
-        <input className="range-bar" type="range" min="0" max="500" step="5" value={valueMin} onChange={handleMinPriceChange} />
-        <input className="range-bar" type="range" min="0" max="500" step="5" value={valueMax} onChange={handleMaxPriceChange} />
-        {/* <InputRange maxValue={500} minValue={0} value={value} onChange={handlePriceChange} /> */}
-        {valueMin}€ to {valueMax}€
-    </>
-  )
-}
+  setMax(evt) {
+    this.setState({
+      value: { ...this.state.value, max: Number(evt.target.value) }
+    });
+  }
 
-export default RangeBar
+  setRange(min, max) {
+    this.setState({ value: { min, max } });
+  }
+
+  render() {
+    return (
+      <form className="form">
+        <div className="input-range-wrapper">
+          <InputRange
+            maxValue={1000}
+            minValue={0}
+            value={this.state.value}
+            onChange={value => this.setState({ value })}
+            onChangeComplete={value => console.log(value)}
+          />
+        </div>
+      </form>
+    );
+  }
+ }
+
+export default RangeBar;
