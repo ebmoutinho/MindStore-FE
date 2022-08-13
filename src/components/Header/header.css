@@ -18,20 +18,17 @@ nav {
     font-size: 20px;
 }
 
-.search-div {
-    /* margin-bottom: 9px; */
+/* .search-div {
     margin-left: 500px;
     font-size: 16px;
     font-weight: 300;
     color: gray;
     border: none;
-    /* height: 20px; */
     width: 200px;
     border-bottom: 1px solid rgb(149, 149, 149);
     border-radius: 2px;
     font-family: 'Roboto', sans-serif;
-
-}
+} */
 
 .search-div:focus {
     outline: none;

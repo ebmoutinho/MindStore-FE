@@ -4,11 +4,19 @@ import Footer from '../../components/Footer/Footer';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Product from '../../components/Product/Product';
 import "./productlistpage.css";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function ProductListPage() {
     const [productPageColor, setProductPageColor] = useState(false);
     const [allProducts, setAllProducts] = useState([]);
+    const inputSearch = useRef("");
+
+
+    function handleEnterPress(event) {
+        if (event.key === 'Enter') {
+            console.log(inputSearch.current.value, 'enter press here! ')
+        }
+    }
 
     useEffect(() => {
         setProductPageColor(true);
@@ -44,14 +52,13 @@ function ProductListPage() {
             <Header productPageColor={productPageColor} />
             <div className='product-list-container'>
                 <Sidebar className="sidebar" />
-                <div className='product-grid'>
-                    {/* <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product /> */}
-                    {myArray}
+                    <div className='searchandproducts'>
+                        <label>
+                                <input className="search-div" type="text" placeholder='Search' ref={inputSearch} onKeyPress={handleEnterPress} />
+                        </label>
+                        <div className='product-grid'>
+                            {myArray}
+                    </div>
                 </div>
             </div>
             <Footer />
