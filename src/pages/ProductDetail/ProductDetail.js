@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
 import Header from '../../components/Header/Header'
+import RenderRating from '../../components/RenderRating/RenderRating';
 import arrowLeft from '../../assets/arrow-left.png'
-import starFull from '../../assets/star-full.png'
-import starEmpty from '../../assets/star-empty.png'
-import starHalf from '../../assets/star-half.png'
 import "./productDetail.css"
 
 function ProductDetailPage() {
@@ -50,18 +48,11 @@ function ProductDetailPage() {
                         <img src={arrowLeft} alt="" />
                         <span>&nbsp; Back to Product List</span>
                     </Link>
-                    
+
                     <p className='product-detail_category'>{productData.category}</p>
                     <h1 className='product-detail_title'>{productData.title}</h1>
 
-                    <div className="product-detail_rating">
-                        <img src={starFull} alt="" className='rating-star' />
-                        <img src={starFull} alt="" className='rating-star' />
-                        <img src={starFull} alt="" className='rating-star' />
-                        <img src={starHalf} alt="" className='rating-star' />
-                        <img src={starEmpty} alt="" className='rating-star' />
-                        <span>&nbsp; &nbsp; {productRating.rate} ({productRating.count} reviews)</span>
-                    </div>
+                    <RenderRating productRating={productRating} />
 
                     <p className='product-detail_description'>{productData.description}</p>
 
