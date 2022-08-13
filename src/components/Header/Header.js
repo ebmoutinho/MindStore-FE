@@ -1,28 +1,36 @@
 import { Link } from "react-router-dom";
 import "./header.css";
+import { useState } from "react";
 
 function Header(props) {
     const { loginColor, registerColor, profileColor, productPageColor, cartColor } = props;
-	// const inputSearch = useRef("");
+
+    const [isLoginClicked, setIsLoginClicked] = useState(false);
+    const [isRegisterClicked, setIsRegisterClicked] = useState(false);
+    const [isCartClicked, setIsCartClicked] = useState(false);
+    const [isProductPageClicked, setIsProductPageClicked] = useState(false);
+    const [isProfileClicked, setIsProfileClicked] = useState(false);
 
 
-    // function handleEnterPress(event) {
-    //     if (event.key === 'Enter') {
-    //         console.log(inputSearch.current.value, 'enter press here! ')
-    //     }
-    // }
+    function handleLoginClick() {
+        setIsLoginClicked(!isLoginClicked);
+    }
 
-    // function handleLoginPageClick() {
-    //     setIsClickedLogin(true);
-    // }
+    function handleRegisterClick() {
+        setIsRegisterClicked(!isRegisterClicked);
+    }
 
-    // function handleRegisterPageClick() {
-    //     setIsClickedRegister(true);
-    // }
+    function handleCartClick() {
+        setIsCartClicked(!isCartClicked);
+    }
 
-    // function handleCartPageClick() {
-    //     setIsClickedCart(true);
-    // }
+    function handleProductPageClick() {
+        setIsProductPageClicked(!isProductPageClicked);
+    }
+
+    function handleProfileClick() {
+        setIsProfileClicked(!isProfileClicked);
+    }
 
 
     return (
@@ -30,16 +38,16 @@ function Header(props) {
             <header>
                 <nav>
                     <Link to="/" className="logo-div">Mind<span className="bold">Store</span></Link>
-                    {/* <label>
-                        <input className="search-div" type="text" placeholder='Search' ref={inputSearch} onKeyPress={handleEnterPress} />
-                    </label> */}
+                    {isLoginClicked}
+                    
+                    
+                    
                     <div className='links-div'>
-                        <Link to="/login" className={loginColor ? "active" : ""}>Login</Link>
-                        <Link to="/register" className={registerColor ? "active" : ""}>Register</Link>
-                        <Link to="/profile" className={profileColor ? "active" : ""}>Profile</Link>
-                        <Link to="/productlistpage" className={productPageColor ? "active" : ""}>Product</Link>
-                        {/* <Link to="/cart" className={cartColor ? "active" : ""}>Cart</Link>*/}
-                        <Link to="/cart" className={cartColor ? "pink-cart" : "black-cart"}></Link> 
+                        <Link to="/login" className={loginColor ? "active" : ""} onClick={handleLoginClick}>Login</Link>
+                        <Link to="/register" className={registerColor ? "active" : ""} onClick={handleRegisterClick}>Register</Link>
+                        <Link to="/profile" className={profileColor ? "active" : ""} onClick={handleProfileClick}>Profile</Link>
+                        <Link to="/productlistpage" className={productPageColor ? "active" : ""} onClick={handleProductPageClick}>Product</Link>
+                        <Link to="/cart" className={cartColor ? "pink-cart" : "black-cart"} onClick={handleCartClick}></Link> 
                     </div>
                 </nav>
             </header>
@@ -48,3 +56,23 @@ function Header(props) {
 }
 
 export default Header;
+
+
+/*
+   return (
+        <>
+            <header>
+                <nav>
+                    <Link to="/" className="logo-div">Mind<span className="bold">Store</span></Link>
+                    <div className='links-div'>
+                        <Link to="/login" className={loginColor ? "active" : ""} onClick={handleLoginClick}>Login</Link>
+                        <Link to="/register" className={registerColor ? "active" : ""} onClick={handleRegisterClick}>Register</Link>
+                        <Link to="/profile" className={profileColor ? "active" : ""} onClick={handleProfileClick}>Profile</Link>
+                        <Link to="/productlistpage" className={productPageColor ? "active" : ""} onClick={handleProductPageClick}>Product</Link>
+                        <Link to="/cart" className={cartColor ? "pink-cart" : "black-cart"} onClick={handleCartClick}></Link> 
+                    </div>
+                </nav>
+            </header>
+        </>
+    )
+*/

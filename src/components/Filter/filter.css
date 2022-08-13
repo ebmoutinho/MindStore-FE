@@ -96,7 +96,7 @@
     padding: 10px;
 }
 
-.category-radio, .rating-radio {
+.category-radio {
     /* height: 11px;
     border: none; */
     -webkit-appearance: none;
@@ -113,6 +113,24 @@
   
     position: relative;
     top: 1px;
+}
+
+.rating-radio {
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  
+    border-radius: 50%;
+    width: 11px;
+    height: 11px;
+  
+    border: 1px solid black;
+
+    margin-right: 15px;
+  
+    position: relative;
+    top: -1px;
 }
 
 .category-radio:checked, .rating-radio:checked {
