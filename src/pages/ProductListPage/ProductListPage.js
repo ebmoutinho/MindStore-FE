@@ -4,8 +4,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Product from "../../components/Product/Product";
-import searchBar from "../../assets/search-bar.png"
-
+import searchBar from "../../assets/search-bar.png";
 
 import "./productlistpage.css";
 import { useState, useEffect, useRef } from "react";
@@ -72,12 +71,16 @@ function ProductListPage() {
 						<div className="blank-div"></div>
 					</div>
 
-					<div className="inner-product-grid">
-						{myArray}
-					</div>
-				</div>
-			</div>
 
+
+					<div className="inner-product-grid">
+					    {myArray}
+                    </div>
+				</div>
+
+
+
+			</div>
 			<Footer />
 		</>
 	);

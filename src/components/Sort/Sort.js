@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import "./sort.css";
+import arrowDown from "../../assets/arrow-down.png";
+import arrowRight from "../../assets/arrow-right.png";
 
 function Sort() {
     const [choice, setChoice] = useState(false);
+    const [isClicked, setIsClicked] = useState(false);
 
     function handleChange(e) {
         console.log(e.target.value)
     }
 
     function handleClick() {
+        setIsClicked(!isClicked);
         setChoice(!choice);
     }
 
@@ -17,13 +21,13 @@ function Sort() {
             return (
                 <div>
                      <form className='sort-form'> 
-                        <label htmlFor="ascending">
-                            <input type="radio" name='sort' onChange={handleChange} value="asc" />
+                        <label className='sort-radio-label' htmlFor="ascending">
+                            <input className='sort-radio' id='ascending' type="radio" name='sort' onChange={handleChange} value="asc" />
                             Ascending Order
                         </label>
 
-                        <label htmlFor="descending">
-                            <input type="radio" name='sort' onChange={handleChange} value="desc"/>
+                        <label className='sort-radio-label' htmlFor="descending">
+                            <input className='sort-radio' id='descending' type="radio" name='sort' onChange={handleChange} value="desc"/>
                             Descending Order
                         </label>
                     </form>
@@ -36,8 +40,16 @@ function Sort() {
 
     return (
         <>
-            <button onClick={handleClick}>Sort By</button>
-            <SortOptions /> {/*consoante true or false, mostra form ou só botao */}
+            <div className='sort-container'>
+                <button className="sort-button" onClick={handleClick}>
+                    Sort by
+                    {isClicked ?
+                        <img className="arrow-down" src={arrowDown} alt="" /> :
+                        <img className="arrow-right" src={arrowRight} alt="" />
+                    }
+                </button>
+                <SortOptions /> {/*consoante true or false, mostra form ou só botao */}
+            </div>
         </>
     )
 }
