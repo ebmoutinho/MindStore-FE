@@ -52,13 +52,14 @@ function ProductListPage() {
             <Header productPageColor={productPageColor} />
             <div className='product-list-container'>
                 <Sidebar className="sidebar" />
-                    <div className='searchandproducts'>
-                        <label>
-                                <input className="search-div" type="text" placeholder='Search' ref={inputSearch} onKeyPress={handleEnterPress} />
-                        </label>
-                        <div className='product-grid'>
-                            {myArray}
+                <div className='searchandproducts'>
+                    <label>
+                            <input className="search-div" type="text" placeholder='Search' ref={inputSearch} onKeyPress={handleEnterPress} />
+                    </label>
+                    <div className='product-grid'>
+                        {myArray}
                     </div>
+
                 </div>
             </div>
             <Footer />
