@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 
 import heroImg from "../../assets/heroImg.jpg";
@@ -9,6 +9,27 @@ import Product from "../../components/Product/Product";
 import "./home.css";
 
 function Home() {
+    const [allProducts, setAllProducts] = useState([]);
+
+    useEffect(() => {
+        async function fetchAllProducts() {
+            const response = await fetch("https://fakestoreapi.com/products/");
+            const json = await response.json();
+            setAllProducts(json);
+        }
+        fetchAllProducts();
+    }, []);
+
+    const myArray = allProducts.slice(0,4).map((product, index) => {
+        return (
+            <Link to={`/productlistpage/${product.id}`}>
+                <div className="home-product-border">
+                    <Product key={index} productProp={product} />
+                </div>
+            </Link>
+        )
+    });
+
     return (
         <>
             <Header />
@@ -26,7 +47,8 @@ function Home() {
 
             <div className="home-products">
                 <div className="home-product-gallery">
-                    <div className="home-product-border">
+                    {myArray}
+                    {/* <div className="home-product-border">
                         <Product />
                     </div>
                     <div className="home-product-border">
@@ -37,7 +59,7 @@ function Home() {
                     </div>
                     <div className="home-product-border">
                         <Product />
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
