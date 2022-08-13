@@ -1,62 +1,77 @@
-import React from 'react';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-import Sidebar from '../../components/Sidebar/Sidebar';
-import Product from '../../components/Product/Product';
+import React from "react";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import Product from "../../components/Product/Product";
 import "./productlistpage.css";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from "react";
 
 function ProductListPage() {
-    const [productPageColor, setProductPageColor] = useState(false);
-    const [allProducts, setAllProducts] = useState([]);
+	const [productPageColor, setProductPageColor] = useState(false);
+	const [allProducts, setAllProducts] = useState([]);
+	const inputSearch = useRef("");
 
-    useEffect(() => {
-        setProductPageColor(true);
-    }, []);
+	function handleEnterPress(event) {
+		if (event.key === "Enter") {
+			console.log(inputSearch.current.value, "enter press here! ");
+		}
+	}
 
-    useEffect(() => {
-        async function fetchAllProducts() {
-            const request = {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            };
+	useEffect(() => {
+		setProductPageColor(true);
+	}, []);
 
-            const response = await fetch("https://fakestoreapi.com/products/", request);
-            const products = await response.json();
+	useEffect(() => {
+		async function fetchAllProducts() {
+			const request = {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			};
 
-            setAllProducts(products);
-            console.log("all products", products);
+			const response = await fetch("https://fakestoreapi.com/products/", request);
+			const products = await response.json();
 
-        }
-        fetchAllProducts();
-    }, []);
+			setAllProducts(products);
+			console.log("all products", products);
+		}
+		fetchAllProducts();
+	}, []);
 
-    const myArray = allProducts.map((product, index) => {
-        return (
-            <Product key={index} productProp={product} />
-        )
-    });
+	const myArray = allProducts.map((product, index) => {
+		return <Product key={index} productProp={product} />;
+	});
 
-    return (
-        <>
-            <Header productPageColor={productPageColor} />
-            <div className='product-list-container'>
-                <Sidebar className="sidebar" />
-                <div className='product-grid'>
-                    {/* <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product /> */}
-                    {myArray}
-                </div>
-            </div>
-            <Footer />
-        </>
-    )
+	return (
+		<>
+			<Header productPageColor={productPageColor} />
+			<div className="product-list-container">
+				<Sidebar className="sidebar" />
+
+				<div className="first-grid">
+
+
+
+					<div className="inner-search-div">
+						<label>
+							<input className="search-div" type="text" placeholder="Search" ref={inputSearch} onKeyPress={handleEnterPress} />
+						</label>
+					</div>
+
+
+
+					<div className="inner-product-grid">
+					    {myArray}
+                    </div>
+				</div>
+
+
+
+			</div>
+			<Footer />
+		</>
+	);
 }
 
-export default ProductListPage
+export default ProductListPage;
