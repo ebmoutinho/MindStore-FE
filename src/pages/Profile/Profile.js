@@ -80,7 +80,7 @@ function Profile() {
       <div className="container non-edit-mode">
         <img src={avatar} alt="" className='profile-image' />
 
-        <div className="title">
+        <div className="title title-profile">
           <h2>Username</h2>
         </div>
 
