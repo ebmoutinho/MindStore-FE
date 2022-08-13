@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
@@ -25,9 +26,7 @@ function ProductListPage() {
 
 	useEffect(() => {
 		setProductPageColor(true);
-	}, []);
 
-	useEffect(() => {
 		async function fetchAllProducts() {
 			const request = {
 				method: "GET",
@@ -46,15 +45,19 @@ function ProductListPage() {
 	}, []);
 
 	const myArray = allProducts.map((product, index) => {
-		return <Product key={index} productProp={product} />;
+		return (
+			<Link to={`/productlistpage/${product.id}`}>
+				<Product key={index} productProp={product} />
+			</Link>
+		)
 	});
 
 	return (
 		<>
 			<Header productPageColor={productPageColor} />
+
 			<div className="product-list-container">
 				<Sidebar className="sidebar" />
-
 				<div className="first-grid">
 					<div className="inner-search-div">
 						<label className="label-flex">
@@ -68,8 +71,15 @@ function ProductListPage() {
 						<div className="blank-div"></div>
 					</div>
 
-					<div className="inner-product-grid">{myArray}</div>
+
+
+					<div className="inner-product-grid">
+					    {myArray}
+                    </div>
 				</div>
+
+
+
 			</div>
 			<Footer />
 		</>

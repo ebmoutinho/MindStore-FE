@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
-import { Link } from "react-router-dom";
-import "./productDetailPage.css"
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from "react-router-dom";
 import Header from '../../components/Header/Header'
-import productImg from '../../assets/productImg.jpg'
 import arrowLeft from '../../assets/arrow-left.png'
 import starFull from '../../assets/star-full.png'
 import starEmpty from '../../assets/star-empty.png'
 import starHalf from '../../assets/star-half.png'
-
+import "./productDetail.css"
 
 function ProductDetailPage() {
+    const { id } = useParams();
     const [quantity, setQuantity] = useState(1);
+    const [productData, setProductData] = useState({});
+    const [productRating, setProductRating] = useState({});
+
+    useEffect(() => {
+        async function fetchById() {
+            const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+            const json = await response.json();
+            setProductData(json);
+            setProductRating(json.rating);
+        }
+        fetchById();
+    }, []);
 
     function handleDecrement() {
         if (quantity === 1) {
@@ -31,37 +42,33 @@ function ProductDetailPage() {
             <Header />
 
             <div className="product-detail_container">
-                <div className="product-detail_image-container">
-                    <img src={productImg} alt="" className='product-detail_image' />
-                </div>
+                <img src={productData.image} alt="" className='product-detail_image' />
+
 
                 <div className="product-detail_body">
                     <Link to="/productlistpage" className='product-detail_link'>
                         <img src={arrowLeft} alt="" />
                         <span>&nbsp; Back to Product List</span>
                     </Link>
-                    <p className='product-detail_category'>CATEGORY NAME</p>
-                    <h1 className='product-detail_title'>
-                        PRODUCT TITLE ALL FANCY AND THINGS LIKE
-                        THAT WOOOOOO
-                    </h1>
+                    
+                    <p className='product-detail_category'>{productData.category}</p>
+                    <h1 className='product-detail_title'>{productData.title}</h1>
+
                     <div className="product-detail_rating">
                         <img src={starFull} alt="" className='rating-star' />
                         <img src={starFull} alt="" className='rating-star' />
                         <img src={starFull} alt="" className='rating-star' />
                         <img src={starHalf} alt="" className='rating-star' />
                         <img src={starEmpty} alt="" className='rating-star' />
-                        <span>&nbsp; &nbsp; 3.5 (328 reviews)</span>
+                        <span>&nbsp; &nbsp; {productRating.rate} ({productRating.count} reviews)</span>
                     </div>
 
-                    <p className='product-detail_description'>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id injjjj turpis lacus, rhoncus blandit. Quis amet, bibendum commodo. Molestie suscipit elementum id urna tempus leo solliaaaaaeros. Non sed neque tellus a aa
-                    </p>
+                    <p className='product-detail_description'>{productData.description}</p>
 
                     <div className="product-detail_cart-options">
                         <div className='product-detail_quantity'>
                             <button onClick={handleDecrement} className='input-btn'>-</button>
-                            <input type="number" value={quantity} readOnly/>
+                            <input type="number" value={quantity} readOnly />
                             <button onClick={handleIncrement} className='input-btn'>+</button>
                         </div>
 
