@@ -4,6 +4,9 @@ import "./filter.css";
 import RangeBar from "../RangeBar/RangeBar";
 import arrowDown from "../../assets/arrow-down.png";
 import arrowRight from "../../assets/arrow-right.png";
+// import starBlack from "../../assets/star-black.png";
+// import starBlack from "../../assets/star-grey.png";
+import starBlack from "../../assets/star-grey-darker.png";
 
 function Filter() {
 	const [isFilterClicked, setIsFilterClicked] = useState(false);
@@ -130,27 +133,43 @@ function Filter() {
 				<div>
 					<form className="rating-form">
 						<label className='rating-radio-label'>
-							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="rating from 0 to 1" />0 - 1
+							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="rating from 0 to 1" />
+							<img src={starBlack} alt="" /> 
+							{/* 0 - 1 */}
 						</label>
 
 						<label className='rating-radio-label'>
 							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="rating from 1.1 to 2" />
-							1.1 - 2
+							<img src={starBlack} alt="" />
+							<img src={starBlack} alt="" />
+							{/* 1.1 - 2 */}
 						</label>
 
 						<label className='rating-radio-label'>
 							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="rating from 2.1 to 3" />
-							2.1 - 3
+							{/* 2.1 - 3 */}
+							<img src={starBlack} alt="" />
+							<img src={starBlack} alt="" />
+							<img src={starBlack} alt="" />
 						</label>
 
 						<label className='rating-radio-label'>
 							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="rating from 3.1 to 4" />
-							3.1 - 4
+							{/* 3.1 - 4 */}
+							<img src={starBlack} alt="" />
+							<img src={starBlack} alt="" />
+							<img src={starBlack} alt="" />
+							<img src={starBlack} alt="" />
 						</label>
 
 						<label className='rating-radio-label'>
 							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="rating from 4.1 to 5" />
-							4.1 - 5
+							{/* 4.1 - 5 */}
+							<img src={starBlack} alt="" />
+							<img src={starBlack} alt="" />
+							<img src={starBlack} alt="" />
+							<img src={starBlack} alt="" />
+							<img src={starBlack} alt="" />
 						</label>
 					</form>
 				</div>

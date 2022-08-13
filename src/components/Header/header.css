@@ -6,10 +6,8 @@ nav {
     justify-content: space-between;
     align-items: center; /*eixo vertical*/
     flex-wrap: wrap;
-
-    /* border-bottom: 1px solid #D4937F; */
     height: 100px;
-    margin: 0 40px;
+    margin: 0 40px 0 20px;
 }
 
 .logo-div {
