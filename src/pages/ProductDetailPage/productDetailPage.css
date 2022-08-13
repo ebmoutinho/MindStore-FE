@@ -80,6 +80,10 @@
     -webkit-appearance: none;
 }
 
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
 .product-detail_quantity input:focus {
     outline: 0;
 }
