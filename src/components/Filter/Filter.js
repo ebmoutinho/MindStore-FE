@@ -15,14 +15,20 @@ function Filter() {
 
 		function handleCategoryClick() {
 			setIsCategoryClicked(!isCategoryClicked);
+			setIsRatingClicked(false);
+			setIsPriceClicked(false);
 			console.log("category");
 		}
 		function handleRatingClick() {
 			setIsRatingClicked(!isRatingClicked);
+			setIsCategoryClicked(false);
+			setIsPriceClicked(false);
 			console.log("rating");
 		}
 		function handlePriceClick() {
 			setIsPriceClicked(!isPriceClicked);
+			setIsCategoryClicked(false);
+			setIsRatingClicked(false);
 			console.log("price");
 		}
 
