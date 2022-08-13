@@ -6,6 +6,7 @@
 
 .product-grid {
     margin-top: 50px;
+    margin-bottom: 50px;
     width: 80%;
     display: grid;
     grid-template-columns: repeat(auto-fit, 300px);

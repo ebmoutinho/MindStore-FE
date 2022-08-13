@@ -7,6 +7,8 @@ import Profile from './pages/Profile/Profile';
 import CartPage from "./pages/CartPage/CartPage"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+
+//https://fakestoreapi.com/products
 function App() {
   return (
     <div>

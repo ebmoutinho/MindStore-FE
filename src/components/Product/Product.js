@@ -30,7 +30,7 @@ function Product(props) {
 	return (
 		<>
 			<div className="product-container">
-				<div className="product-image">
+				<div className="product-image-div">
 					<a href="#">
 						<img className="product-photo" src={productData.image} alt="picsum" />
 					</a>

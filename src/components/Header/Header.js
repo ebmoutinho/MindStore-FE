@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import "./header.css";
+import cart from "../../assets/shopping-cart.png";
 
 function Header(props) {
     const { loginColor, registerColor, profileColor, productPageColor, cartColor } = props;
@@ -40,7 +41,8 @@ function Header(props) {
                         <Link to="/register" className={registerColor ? "active" : ""}>Register</Link>
                         <Link to="/profile" className={profileColor ? "active" : ""}>Profile</Link>
                         <Link to="/productlistpage" className={productPageColor ? "active" : ""}>Product</Link>
-                        <Link to="/cart" className={cartColor ? "active" : ""}>Cart</Link>
+                        {/* <Link to="/cart" className={cartColor ? "active" : ""}>Cart</Link>*/}
+                        <Link to="/cart" className={cartColor ? "pink-cart" : "black-cart"}></Link> 
                     </div>
                 </nav>
             </header>
