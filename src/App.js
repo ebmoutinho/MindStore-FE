@@ -6,7 +6,7 @@ import Login from './pages/Credentials/Login';
 import ProductListPage from './pages/ProductListPage/ProductListPage';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Profile from './pages/Profile/Profile';
-import CartPage from "./pages/CartPage/CartPage"
+import CartPage from "./pages/Cart/Cart"
 
 
 //https://fakestoreapi.com/products
