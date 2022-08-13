@@ -2,12 +2,15 @@ import React from "react";
 import { useState } from "react";
 import "./filter.css";
 import RangeBar from "../RangeBar/RangeBar";
+import arrowDown from "../../assets/arrow-down.png";
+import arrowRight from "../../assets/arrow-right.png";
 
 function Filter() {
 	const [isFilterClicked, setIsFilterClicked] = useState(false);
 	const [isCategoryClicked, setIsCategoryClicked] = useState(false);
 	const [isRatingClicked, setIsRatingClicked] = useState(false);
 	const [isPriceClicked, setIsPriceClicked] = useState(false);
+	const [isClicked, setIsClicked] = useState(false);
 	// const [value, setValue] = useState(0);
 
 	function FilterMainButton() {
@@ -31,30 +34,40 @@ function Filter() {
 			return (
 				//form
 				<>
-					{/* <form className="filter-form"> */}
-                        
-						
+					<div className="inner-filter-container">
 						<label>
-							<button name="filter" onClick={handleCategoryClick} value="category">
+							<button className="category-button" name="filter" onClick={handleCategoryClick} value="category">
 								Category
+								{isCategoryClicked ?
+                        		<img className="arrow-down" src={arrowDown} alt="" /> :
+                        		<img className="arrow-right" src={arrowRight} alt="" />
+                    			}
 							</button>
 						</label>
 						<CategoryButton />
 
 						<label>
-							<button name="filter" onClick={handleRatingClick} value="rating">
+							<button className="rating-button" name="filter" onClick={handleRatingClick} value="rating">
 								Rating
+								{isRatingClicked ?
+                        		<img className="arrow-down" src={arrowDown} alt="" /> :
+                        		<img className="arrow-right" src={arrowRight} alt="" />
+                    			}
 							</button>
 						</label>
 						<RatingButton />
 
 						<label>
-							<button name="filter" onClick={handlePriceClick} value="price">
+							<button className="price-button" name="filter" onClick={handlePriceClick} value="price">
 								Price
+								{isPriceClicked ?
+                        		<img className="arrow-down" src={arrowDown} alt="" /> :
+                        		<img className="arrow-right" src={arrowRight} alt="" />
+                    			}
 							</button>
 						</label>
 						<PriceButton />
-					{/* </form> */}
+					</div>
 				</>
 			);
 		} else {
@@ -146,8 +159,6 @@ function Filter() {
 	}
 
 	function PriceButton() {
-
-
 		// function handleRangeChange(event) {
 		// 	setRange(event.target.value);
 		// 	console.log(event.target.value);
@@ -157,8 +168,8 @@ function Filter() {
 		if (isPriceClicked) {
 			return (
 				<div>
-                    <RangeBar />
-                    {/* <input type="range" min="0" max="5" value={value} onChange={(e) => setValue(e.target.value)} />
+					<RangeBar />
+					{/* <input type="range" min="0" max="5" value={value} onChange={(e) => setValue(e.target.value)} />
                         {value}
 						 */}
 
@@ -207,10 +218,15 @@ function Filter() {
 
 	return (
 		<>
-			<button onClick={handleFilterClick}>Filter by</button>
-			<FilterMainButton />
-            {/* <input type="range" min="0" max="5" value={value} onChange={(e) => setValue(e.target.value)} />
+			<div className="filter-container">
+				<button className="filter-button" onClick={handleFilterClick}>
+					Filter by
+					{isFilterClicked ? <img className="arrow-down" src={arrowDown} alt="" /> : <img className="arrow-right" src={arrowRight} alt="" />}
+				</button>
+				<FilterMainButton />
+				{/* <input type="range" min="0" max="5" value={value} onChange={(e) => setValue(e.target.value)} />
                         {value} */}
+			</div>
 		</>
 	);
 }

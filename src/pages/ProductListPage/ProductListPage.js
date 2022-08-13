@@ -3,8 +3,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Product from "../../components/Product/Product";
-import searchBar from "../../assets/search-bar.png"
-
+import searchBar from "../../assets/search-bar.png";
 
 import "./productlistpage.css";
 import { useState, useEffect, useRef } from "react";
@@ -20,10 +19,9 @@ function ProductListPage() {
 		}
 	}
 
-    function handleIconClick() {
-        console.log(inputSearch.current.value, "icon click here! ");
-    }
-
+	function handleIconClick() {
+		console.log(inputSearch.current.value, "icon click here! ");
+	}
 
 	useEffect(() => {
 		setProductPageColor(true);
@@ -58,30 +56,20 @@ function ProductListPage() {
 				<Sidebar className="sidebar" />
 
 				<div className="first-grid">
-
-
-
 					<div className="inner-search-div">
 						<label className="label-flex">
-							<input className="search-div" type="text" placeholder="Search" ref={inputSearch} onKeyPress={handleEnterPress}/>
-                            <a href="#" onClick={handleIconClick}>
-                                <img className="search-icon" src={searchBar} alt="" />
-                            </a>
+							<input className="search-div" type="text" placeholder="Search" ref={inputSearch} onKeyPress={handleEnterPress} />
+							<a href="#" onClick={handleIconClick}>
+								<img className="search-icon" src={searchBar} alt="" />
+							</a>
 						</label>
-                        <div className="blank-div"></div>
-                        <div className="blank-div"></div>
-                        <div className="blank-div"></div>
+						<div className="blank-div"></div>
+						<div className="blank-div"></div>
+						<div className="blank-div"></div>
 					</div>
 
-
-
-					<div className="inner-product-grid">
-					    {myArray}
-                    </div>
+					<div className="inner-product-grid">{myArray}</div>
 				</div>
-
-
-
 			</div>
 			<Footer />
 		</>

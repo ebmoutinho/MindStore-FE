@@ -32,10 +32,13 @@
 }
 
 .sidebar {
+    padding-left: 20px;
+    padding-top: 31px;
+    padding-right: 20px;
     width: 20%;
     min-width: 200px;
-    /* background-color: var(--light-grey); */
-    background-color: rgb(212, 212, 212);
+    background-color: var(--light-grey);
+    /* background-color: rgb(212, 212, 212); */
 }
 
 @media (max-width: 650px) {
@@ -63,7 +66,6 @@
     border: none;
     width: 99%;
     border-bottom: 1px solid rgb(149, 149, 149);
-    border-radius: 2px;
     font-family: 'Roboto', sans-serif;
 }
 

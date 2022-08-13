@@ -26,3 +26,7 @@ a {
     background-color: var(--primary-color);
     color: white;
 }
+
+input, button {
+    font-family: 'Roboto', sans-serif;
+}
