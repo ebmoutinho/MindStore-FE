@@ -8,9 +8,13 @@ import { useState } from 'react';
 
 //autoComplete='off'
 function Login() {
-    const email = useRef();
+    const username = useRef();
     const password = useRef();
     const [loginColor, setLoginColor] = useState(false);
+
+	const [message, setMessage] = useState("");
+	const [token, setToken] = useState("");
+    const [status, setStatus] = useState("");
 
     useEffect(() => {
         setLoginColor(true);
@@ -18,22 +22,63 @@ function Login() {
 
 
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
 
-        // const request = {
-        //     method: 'GET',
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify({email: email.current.value, password: password.current.value}),
-        // }
+        // console.log(username, password);
 
-        // // add async to function
-        // const response = await fetch("", request);
-        // const json = await response.json();
+		const request = {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ username: username.current.value, password: password.current.value }),
+		};
+        
+        try {
+            const response = await fetch("https://fakestoreapi.com/auth/login", request);
+            const json = await response.json();
+            console.log(response.statusText);
+            setStatus(response.status);
+
+            setMessage("login successful!"); //devolve a msg OK ou ERRO do json login
+			setToken(json.token); //devolve o token que é um ESTADO, e podemos imprimir no HTML {token}
+			localStorage.setItem("token", json.token);
+            console.log(json.token);
+            console.log(response.status); //200
 
 
-        console.log("Email: " + email.current.value);
-        console.log("Password: " + password.current.value);
+        } catch (e) {
+            console.log("error message ", e.message);
+            console.log("login failed resposta martelada")
+	        setMessage("credentials failed"); //devolve a msg OK ou ERRO do json login
+    		setToken(null);
+            setStatus("401 martelado");
+        }
+
+	
+
+        // if (response.status === 200) {
+		// 	setMessage("login successful!"); //devolve a msg OK ou ERRO do json login
+		// 	setToken(json.token); //devolve o token que é um ESTADO, e podemos imprimir no HTML {token}
+		// 	// localStorage.setItem("token", json.token);
+        //     console.log(json.token);
+        //     console.log(response.status); //200
+        // } else {
+        //     console.log("login failed resposta martelada")
+		// 	setMessage("credentials failed"); //devolve a msg OK ou ERRO do json login
+		// 	setToken(null);
+		// }
+
+		// if (json.token === null) {
+		// 	setMessage("credentials failed"); //devolve a msg OK ou ERRO do json login
+		// 	setToken("");
+		// } else {
+		// 	setMessage("login successful!"); //devolve a msg OK ou ERRO do json login
+		// 	setToken(json.token); //devolve o token que é um ESTADO, e podemos imprimir no HTML {token}
+		// 	localStorage.setItem("token", json.token);
+		// }
+
+        // console.log("Username: " + username.current.value);
+        // console.log("Password: " + password.current.value);
     }
 
     return (
@@ -46,7 +91,7 @@ function Login() {
 
                 <form className='form' onSubmit={handleSubmit}>
                     <label className='label' htmlFor="login">
-                        <input autoFocus autoComplete="off" type="text" name="login" placeholder="Email" ref={email} required/>
+                        <input autoFocus autoComplete="off" type="text" name="login" placeholder="Email" ref={username} required/>
                     </label>
 
                     <label className='label' htmlFor="password">
@@ -54,6 +99,8 @@ function Login() {
                     </label>
                     <button className="button" type="submit">Login</button>
                 </form>
+                <p>Login status: {message}</p>
+                <p>Status: {status}</p>
                 <p className='footer-text'>
                     Don't have an account?
                     <Link to="/register" href="#"> Register here</Link>
