@@ -3,17 +3,17 @@
     margin: 40px;
     display: flex;
     justify-content: space-between;
-    height: 800px;
 }
 
-.product-detail_image-container {
+/* .product-detail_image-container {
+} */
+
+.product-detail_image {
     background-color: white;
     width: 45%;
     text-align: center;
-}
-
-.product-detail_image {
-    height: 100%;
+    height: 800px;
+    object-fit: contain;
 }
 
 .product-detail_body {

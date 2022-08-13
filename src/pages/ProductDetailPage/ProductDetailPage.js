@@ -31,9 +31,12 @@ function ProductDetailPage() {
             <Header />
 
             <div className="product-detail_container">
-                <div className="product-detail_image-container">
+                {/* <div className="product-detail_image-container">
                     <img src={productImg} alt="" className='product-detail_image' />
-                </div>
+                </div> */}
+
+                <img src={productImg} alt="" className='product-detail_image' />
+
 
                 <div className="product-detail_body">
                     <Link to="/productlistpage" className='product-detail_link'>
@@ -61,7 +64,7 @@ function ProductDetailPage() {
                     <div className="product-detail_cart-options">
                         <div className='product-detail_quantity'>
                             <button onClick={handleDecrement} className='input-btn'>-</button>
-                            <input type="number" value={quantity} readOnly/>
+                            <input type="number" value={quantity} readOnly />
                             <button onClick={handleIncrement} className='input-btn'>+</button>
                         </div>
 
