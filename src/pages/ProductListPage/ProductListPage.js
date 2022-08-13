@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Product from "../../components/Product/Product";
-import lala from "../../assets/search-bar.png"
+import searchBar from "../../assets/search-bar.png"
 
 
 import "./productlistpage.css";
@@ -65,7 +65,7 @@ function ProductListPage() {
 						<label className="label-flex">
 							<input className="search-div" type="text" placeholder="Search" ref={inputSearch} onKeyPress={handleEnterPress}/>
                             <a href="#" onClick={handleIconClick}>
-                                <img className="search-icon" src={lala} alt="" />
+                                <img className="search-icon" src={searchBar} alt="" />
                             </a>
 						</label>
                         <div className="blank-div"></div>
