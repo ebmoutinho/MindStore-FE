@@ -1,0 +1,41 @@
+.non-edit-mode, .to-save {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-image {
+    border-radius: 50%;
+    margin: 0 auto;
+    width: 200px;
+}
+
+.title-profile {
+    margin-bottom: 80px;
+}
+
+.title-to-change {
+    margin-bottom: 40px;
+}
+
+.button {
+    margin: 0 72px;
+}
+
+.btn-flex {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.btn-cancel {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    margin: 0;
+    width: 35%;
+}
+
+.btn-save {
+    margin: 0;
+    width: 60%;
+}
