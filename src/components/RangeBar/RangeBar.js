@@ -37,17 +37,20 @@ class RangeBar extends React.Component {
 
   render() {
     return (
-      <form className="form">
-        <div className="input-range-wrapper">
-          <InputRange
-            maxValue={1000}
-            minValue={0}
-            value={this.state.value}
-            onChange={value => this.setState({ value })}
-            onChangeComplete={value => console.log(value)}
-          />
-        </div>
-      </form>
+      <div className="range-bar-div">
+        <form>
+          <div className="input-range-wrapper">
+            <InputRange
+              maxValue={1000}
+              minValue={0}
+              value={this.state.value}
+              onChange={value => this.setState({ value })}
+              onChangeComplete={value => console.log(value)}
+            />
+          </div>
+        </form>
+
+      </div>
     );
   }
  }

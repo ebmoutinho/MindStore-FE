@@ -10,13 +10,9 @@ function Filter() {
 	const [isCategoryClicked, setIsCategoryClicked] = useState(false);
 	const [isRatingClicked, setIsRatingClicked] = useState(false);
 	const [isPriceClicked, setIsPriceClicked] = useState(false);
-	const [isClicked, setIsClicked] = useState(false);
-	// const [value, setValue] = useState(0);
 
 	function FilterMainButton() {
-		// function handleFilterChange(event) {
-		//     console.log(event.target.value);
-		// };
+
 		function handleCategoryClick() {
 			setIsCategoryClicked(!isCategoryClicked);
 			console.log("category");
@@ -91,23 +87,23 @@ function Filter() {
 			return (
 				<div>
 					<form className="category-form">
-						<label>
-							<input type="radio" name="category" onChange={handleCategoryChange} value="women's clothing" />
+						<label className='category-radio-label'>
+							<input className='category-radio' type="radio" name="category" onChange={handleCategoryChange} value="women's clothing" />
 							Women’s Clothing
 						</label>
 
-						<label>
-							<input type="radio" name="category" onChange={handleCategoryChange} value="men's clothing" />
+						<label className='category-radio-label'>
+							<input className='category-radio'  type="radio" name="category" onChange={handleCategoryChange} value="men's clothing" />
 							Men’s Clothing
 						</label>
 
-						<label>
-							<input type="radio" name="category" onChange={handleCategoryChange} value="jewelery" />
+						<label className='category-radio-label'>
+							<input className='category-radio' type="radio" name="category" onChange={handleCategoryChange} value="jewelery" />
 							Jewellery
 						</label>
 
-						<label>
-							<input type="radio" name="category" onChange={handleCategoryChange} value="electronics" />
+						<label className='category-radio-label'>
+							<input className='category-radio' type="radio" name="category" onChange={handleCategoryChange} value="electronics" />
 							Electronics
 						</label>
 					</form>
@@ -127,27 +123,27 @@ function Filter() {
 			return (
 				<div>
 					<form className="rating-form">
-						<label>
-							<input type="radio" name="rating" onChange={handleRatingChange} value="rating from 0 to 1" />0 - 1
+						<label className='rating-radio-label'>
+							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="rating from 0 to 1" />0 - 1
 						</label>
 
-						<label>
-							<input type="radio" name="rating" onChange={handleRatingChange} value="rating from 1.1 to 2" />
+						<label className='rating-radio-label'>
+							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="rating from 1.1 to 2" />
 							1.1 - 2
 						</label>
 
-						<label>
-							<input type="radio" name="rating" onChange={handleRatingChange} value="rating from 2.1 to 3" />
+						<label className='rating-radio-label'>
+							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="rating from 2.1 to 3" />
 							2.1 - 3
 						</label>
 
-						<label>
-							<input type="radio" name="rating" onChange={handleRatingChange} value="rating from 3.1 to 4" />
+						<label className='rating-radio-label'>
+							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="rating from 3.1 to 4" />
 							3.1 - 4
 						</label>
 
-						<label>
-							<input type="radio" name="rating" onChange={handleRatingChange} value="rating from 4.1 to 5" />
+						<label className='rating-radio-label'>
+							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="rating from 4.1 to 5" />
 							4.1 - 5
 						</label>
 					</form>
@@ -159,15 +155,10 @@ function Filter() {
 	}
 
 	function PriceButton() {
-		// function handleRangeChange(event) {
-		// 	setRange(event.target.value);
-		// 	console.log(event.target.value);
-		// 	// rangeRef.current = (event.target.value);
-		// }
-
+	
 		if (isPriceClicked) {
 			return (
-				<div>
+				<>
 					<RangeBar />
 					{/* <input type="range" min="0" max="5" value={value} onChange={(e) => setValue(e.target.value)} />
                         {value}
@@ -209,7 +200,7 @@ function Filter() {
 							more than 500€
 						</label>
 					</form> */}
-				</div>
+				</>
 			);
 		} else {
 			return;
