@@ -1,6 +1,11 @@
-.non-edit-mode, .to-save {
+.non-edit-mode,
+.to-save {
     display: flex;
     flex-direction: column;
+}
+
+.to-save {
+    margin: 147px 0;
 }
 
 .profile-image {

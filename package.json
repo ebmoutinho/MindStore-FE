@@ -1,4 +1,5 @@
 {
+  
   "name": "project26_frontend_final_project_mind_store",
   "version": "0.1.0",
   "private": true,
@@ -14,6 +15,8 @@
     "typescript": "^4.7.4",
     "web-vitals": "^2.1.4"
   },
+  "proxy": "https://mindshop-api.herokuapp.com",
+
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

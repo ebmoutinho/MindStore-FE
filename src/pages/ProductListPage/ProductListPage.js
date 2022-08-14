@@ -28,15 +28,16 @@ function ProductListPage() {
 		setProductPageColor(true);
 
 		async function fetchAllProducts() {
-			const request = {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-				},
-			};
+			// const request = {
+			// 	method: "GET",
+			// 	// headers: {
+			// 	// 	"Content-Type": "application/json",
+			// 	// },
+			// };
 
-			const response = await fetch("https://fakestoreapi.com/products/", request);
+			const response = await fetch("/api/v1/users/products?direction=ASC&field=title&page=1&pagesize=9");
 			const products = await response.json();
+			console.log(products)
 
 			setAllProducts(products);
 			console.log("all products", products);

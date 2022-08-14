@@ -13,7 +13,7 @@ function ProductDetailPage() {
 
     useEffect(() => {
         async function fetchById() {
-            const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+            const response = await fetch(`/api/v1/users/products/${id}`);
             const json = await response.json();
             setProductData(json);
             setProductRating(json.rating);

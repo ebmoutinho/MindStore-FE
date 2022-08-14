@@ -18,7 +18,7 @@ function Product(props) {
 				},
 			};
 	
-			const response = await fetch(`https://fakestoreapi.com/products/${productProp.id}`, request);
+			const response = await fetch(`/api/v1/users/products/${productProp.id}`, request);
 			const product = await response.json();
 
 			setProductData(productProp);

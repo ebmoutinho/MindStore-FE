@@ -20,7 +20,7 @@ function Home() {
         fetchAllProducts();
     }, []);
 
-    const myArray = allProducts.slice(0,4).map((product, index) => {
+    const myArray = allProducts.slice(0,3).map((product, index) => {
         return (
             <Link to={`/productlistpage/${product.id}`}>
                 <div className="home-product-border">

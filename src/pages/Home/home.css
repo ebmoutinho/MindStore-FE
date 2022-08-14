@@ -1,5 +1,5 @@
 .home-hero {
-    margin: 84px 40px;
+    margin: 84px 20px;
     padding: 40px;
     background-color: white;
     display: flex;
@@ -136,6 +136,17 @@
 @media (max-width: 995px) {
     .home-product-gallery {
         display: block;
+    }
+
+    .hero-body-title {
+        font-size: 36px;
+        margin-bottom: 0;
+        margin-top: 20px;
+    }
+
+    .hero-body-description {
+        font-size: 16px;
+        margin-bottom: 60px;
     }
 }
 
