@@ -6,19 +6,41 @@ import CheckoutProduct from "../../components/CheckoutProduct/CheckoutProduct";
 import "./cart.css";
 
 function CartPage() {
+
 	const [cartColor, setCartColor] = useState(false);
 	const [checkoutClicked, setCheckoutClicked] = useState(false);
 	const [discountClicked, setDiscountClicked] = useState(false);
+	const [allProducts, setAllProducts] = useState([]);
 	const fullName = useRef("");
 	const phoneNumber = useRef("");
 	const email = useRef("");
 	const address = useRef("");
 	const discountCode = useRef("");
-	const [remove, setRemove] = useState(false);
 
 	useEffect(() => {
 		setCartColor(true);
+		async function fetchAllProducts() {
+			const request = {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			};
+			const response = await fetch("https://fakestoreapi.com/products/", request);
+			const products = await response.json();
+
+			setAllProducts(products);
+			console.log("all products from 1st fetch", products);
+		}
+		fetchAllProducts();
 	}, []);
+
+	const productArray = allProducts.map( (product, index) => {
+		return (
+			//assumir que estava a chamar a funcao, estava a executar cada x que checkout product era chamado
+		<CheckoutProduct key={index} handleRemove={() => {handleRemove(index)}} product={product} productList={allProducts} index={index} />
+		);
+	});
 
 	function handleCheckout(event) {
 		event.preventDefault();
@@ -30,10 +52,22 @@ function CartPage() {
 		setDiscountClicked(true);
 		console.log("discount clicked");
 	}
-	function handleRemove() {
-        setRemove(true);
-        console.log("product removed");
+
+	
+	function handleRemove(index) {
+		const newProductsArray = [...allProducts];
+		const allnew = newProductsArray.splice(index, 1);
+		setAllProducts(allnew);
+		console.log("allnew ", allnew.length, allnew)
+        // console.log("product removed");
+		// console.log("product list from handleRemove:", allProducts);
+		// console.log("products list size from handleRemove:", allProducts.length);
+
+		// console.log("newproductarray: ", newProductsArray);
+		// console.log("newproductarray length: ", newProductsArray.length);
+        // setRemove(true); //NAO POSSO TER ISTO
     }
+	// console.log("allproducts outside handle", allProducts);
 
 	return (
 		<>
@@ -44,10 +78,8 @@ function CartPage() {
 						<h2>Shopping Cart</h2>
 					</div>
 					<div className="main-products">
-					{/* <div className={remove === true ? "main-products" : "main-products-removed"}> */}
-						<CheckoutProduct handleRemove={handleRemove} />
-						<CheckoutProduct handleRemove={handleRemove} />
-						<CheckoutProduct handleRemove={handleRemove} />
+						{productArray}
+						
 					</div>
 					<div className="main-footer">
 						<a href="/productlistpage">Back to Product List</a>
