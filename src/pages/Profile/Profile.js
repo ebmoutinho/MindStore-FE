@@ -68,7 +68,7 @@ function Profile(props) {
 		setEditProfile(false);
 	}
 
-	
+
 	return (
 		<>
 			<Header profileColor={profileColor} />
@@ -114,7 +114,9 @@ function Profile(props) {
 								</div>
 							</form>
 						</div>
-						<Footer />
+						<div className="footer-wrapper edit-footer">
+							<Footer />
+						</div>
 					</>
 				) : (
 					<>
@@ -132,7 +134,9 @@ function Profile(props) {
 								Edit Profile
 							</button>
 						</div>
-						<Footer />
+						<div className="footer-wrapper non-edit-footer">
+							<Footer />
+						</div>
 					</>
 				)
 			}
