@@ -1,6 +1,7 @@
 .cart-container {
     display: flex;
     justify-content: space-between;
+    /* flex-wrap: wrap; */
 }
 
 .main-container {
@@ -8,7 +9,7 @@
     /* margin: 30px; */
     padding: 30px;
 }
-.main-header {
+.main-header, .payment-header {
     border-bottom: 1px solid #999999;
 }
 .main-header h2 {
@@ -44,6 +45,12 @@
     background-color: #E4E4E4;
     display: flex;
     flex-direction: column;
+}
+.payment-header h4 {
+    margin: 0;
+    margin-bottom: 12px;
+    font-size: 30px;
+    font-weight: 300;
 }
 
 .discount-container {
