@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import Header from "../../components/Header/Header";
 import "./checkout.css";
 import arrowLeft from "../../assets/arrow-left.png"
-import { EmitFlags } from 'typescript';
 
 function Checkout() {
     const name = useRef("");
