@@ -9,12 +9,7 @@ function CheckoutProduct(props) {
 	const [listEmpty, setListEmpty] = useState(false);
     const [updateList, setUpdateList] = useState();
 
-    // useEffect(() => {
-    //     setUpdateList(productList.length);
-    // }, [productList]);
-
-
-	if (productList.length >= 1) {
+	if (productList.length !== 0) {
 		return (
 			<>
 				<div className="main-product-container">
@@ -44,10 +39,10 @@ function CheckoutProduct(props) {
 				</div>
 			</>
 		);
-	} else {
-		// setListEmpty(true);
-		return <p>your cart is currently empty</p>;
-	}
+	} else if(productList.isEmpty()) {
+		setListEmpty(true);
+		return (<p>your cart is currently empty</p>);
+	};
 
 	//   return (
 	//     <>

@@ -55,19 +55,14 @@ function CartPage() {
 
 	
 	function handleRemove(index) {
-		const newProductsArray = [...allProducts];
-		const allnew = newProductsArray.splice(index, 1);
-		setAllProducts(allnew);
-		console.log("allnew ", allnew.length, allnew)
-        // console.log("product removed");
-		// console.log("product list from handleRemove:", allProducts);
-		// console.log("products list size from handleRemove:", allProducts.length);
-
-		// console.log("newproductarray: ", newProductsArray);
-		// console.log("newproductarray length: ", newProductsArray.length);
+		const oldProductsArray = [...allProducts];
+		const newProductsArray = oldProductsArray; //CRIAR ESTA VARIÁVEL INTERMÉDIA
+		newProductsArray.splice(index, 1);
+		setAllProducts(newProductsArray);
+		console.log("newProductsArray ", newProductsArray.length, newProductsArray)
+        console.log("product removed");
         // setRemove(true); //NAO POSSO TER ISTO
     }
-	// console.log("allproducts outside handle", allProducts);
 
 	return (
 		<>
