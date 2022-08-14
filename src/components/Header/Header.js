@@ -80,7 +80,7 @@ function Header(props) {
 
 					<div className="links-div">
 						<Link to="/productlistpage" className={productPageColor ? "active" : ""} onClick={handleProductPageClick}>
-							Product
+							Products
 						</Link>
 						<Link to="/profile" className={profileColor ? "active" : ""} onClick={handleProfileClick}>
 							Profile
