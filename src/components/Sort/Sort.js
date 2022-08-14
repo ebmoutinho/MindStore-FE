@@ -22,12 +22,12 @@ function Sort() {
                 <div>
                      <form className='sort-form'> 
                         <label className='sort-radio-label' htmlFor="ascending">
-                            <input className='sort-radio' id='ascending' type="radio" name='sort' onChange={handleChange} value="asc" />
+                            <input className='sort-radio' id='ascending' type="radio" name='sort' onChange={handleChange} value="ASC" />
                             Ascending Order
                         </label>
 
                         <label className='sort-radio-label' htmlFor="descending">
-                            <input className='sort-radio' id='descending' type="radio" name='sort' onChange={handleChange} value="desc"/>
+                            <input className='sort-radio' id='descending' type="radio" name='sort' onChange={handleChange} value="DESC"/>
                             Descending Order
                         </label>
                     </form>
