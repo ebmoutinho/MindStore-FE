@@ -104,36 +104,40 @@ function CartPage() {
 					<div className="payment-container">
 
 						<div className="payment-header">
-							<h4>Summary</h4>
-							<p>Total: 369€</p>
+							<h2>Summary</h2>
+							<div className="payment-header-info">
+								<p>Total:</p>
+								<p>369€</p>
+
+							</div>
 						</div>
 
 						<div>
-							<form className="payment-form" onSubmit={handleCheckout}>
-								<label htmlFor="full-name">
+							<form className="payment-form-cart" onSubmit={handleCheckout}>
+								<label className="payment-label-cart" htmlFor="full-name">
 									<input type="text" name="full-name" ref={fullName} placeholder="Full Name" />
 								</label>
-								<label htmlFor="phone-number">
+								<label className="payment-label-cart" htmlFor="phone-number">
 									<input type="text" name="phone-number" ref={phoneNumber} placeholder="Phone Number" />
 								</label>
-								<label htmlFor="email">
+								<label className="payment-label-cart" htmlFor="email">
 									<input type="text" name="email" ref={email} placeholder="Email" />
 								</label>
-								<label htmlFor="address">
+								<label className="payment-label-cart" htmlFor="address">
 									<input type="text" name="address" ref={address} placeholder="Address" />
 								</label>
-								<button type="submit">Checkout</button>
+								<button className="payment-button-cart" type="submit">Checkout</button>
 							</form>
 						</div>
 
 					</div>
 
 					<div className="discount-container">
-						<form onSubmit={handleDiscount}>
-							<label htmlFor="discount-code">
+						<form className="discount-container-form" onSubmit={handleDiscount}>
+							<label className="discount-label-cart" htmlFor="discount-code">
 								<input type="text" name="discount-code" ref={discountCode} placeholder="Enter your discount code" />
 							</label>
-							<button type="submit">Submit</button>
+							<button className="payment-submit-button" type="submit">Submit</button>
 						</form>
 					</div>
 				</div>
