@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 // import productImage from "../../assets/product-image.png";
 import { useState } from "react";
-import QuantityButton from "../../components/QuantityButton/QuantityButton";
+import QuantityButton from "../QuantityButton/QuantityButton";
 import "./checkoutproduct.css";
 
 function CheckoutProduct(props) {
@@ -17,9 +17,9 @@ function CheckoutProduct(props) {
 					</div>
 
 					<div className="details-div">
-						<p className="details-div_category">{product.category}</p>
+						<p>{product.category}</p>
 
-						<h1 className="details-div_title">{product.title}</h1>
+						<p>{product.title}</p>
 					</div>
 
 					<div className="quantity-div">
