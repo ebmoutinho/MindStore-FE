@@ -61,8 +61,10 @@
     color: var(--primary-color);
     font-size: 14px;
     font-weight: 400;
+    text-align: end;
 }
 
 .remove-div {
     width: 9%;
+    text-align: center;
 }
