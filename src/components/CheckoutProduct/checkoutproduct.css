@@ -10,21 +10,54 @@
 }
 
 .image-div {
-    width: 12%;
+    width: 9%;
+    max-height: fit-content;
+    background-color: white;
+    padding: 5px;
 }
 
 .image-div img {
     width: 100%;
     min-width: 50px;
+    height: 100px;
+    object-fit: contain;
+    
 }
 
 .details-div {
     display: flex;
     flex-direction: column;
+    width: 45%;
+    
+}
+.details-div_category {
+    font-weight: 500;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+}
+.details-div_title {
+    font-weight: 300;
+    font-size: 16px;
 }
 
 .remove-button {
     border: none;
     background-color: var(--light-grey);
     cursor: pointer;
+}
+
+.quantity-div {
+    width: 7,5%;
+}
+
+.price-div {
+    width: 12%;
+    color: var(--primary-color);
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.remove-div {
+    width: 9%;
 }

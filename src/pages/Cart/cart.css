@@ -4,7 +4,7 @@
 }
 
 .main-container {
-    background-color: white;
+    /* background-color: white; */
     /* margin: 30px; */
     padding: 30px;
 }
@@ -14,13 +14,21 @@
 .main-header h2 {
     margin: 0;
     margin-bottom: 12px;
+    font-size: 30px;
+    font-weight: 300;
 }
 .main-products {
-    background-color: pink;
+    margin-top: 40px;
 }
 
 .main-products-removed {
     display: none;
+}
+.main-product-container {
+    background-color: rgb(246, 246, 246);
+}
+.main-footer {
+    font-weight: 400;
 }
 
 
@@ -47,3 +55,4 @@
     display: flex;
     flex-direction: column;
 }
+

@@ -7,6 +7,7 @@ import ProductListPage from './pages/ProductListPage/ProductListPage';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Profile from './pages/Profile/Profile';
 import CartPage from "./pages/Cart/Cart"
+import EmptyPage from './pages/EmptyPage/EmptyPage';
 
 
 //https://fakestoreapi.com/products
@@ -23,6 +24,7 @@ function App() {
           <Route path="productlistpage" element={<ProductListPage />} />
           <Route path="productlistpage/:id" element={<ProductDetail />} />
           <Route path="cart" element={<CartPage />} />
+          <Route path="emptypage" element={<EmptyPage />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -35,8 +35,8 @@ function Profile(props) {
             //     },
             // };
 
-            // const response = await fetch(`https://fakestoreapi.com/users/${userId}`);
-			const response = await fetch(`https://fakestoreapi.com/users/1`);
+            const response = await fetch(`https://fakestoreapi.com/users/${userId}`);
+			// const response = await fetch(`https://fakestoreapi.com/users/1`, request);
             const json = await response.json();
             console.log("json :", json) //TPKENNNNNN
        
@@ -116,9 +116,7 @@ function Profile(props) {
 
 				<div className="title title-profile">
 					{/* <h2>{name}</h2> */}
-					<h2>Username {userData.username}</h2>
-					<h2>Email {userData.email}</h2>
-					{/* <h2>Name {userData.name.firstname}</h2> */}
+					<h2>Username</h2>
 				</div>
 
 				<button className="button" onClick={handleEditProfile}>

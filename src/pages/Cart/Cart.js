@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import CheckoutProduct from "../../components/CheckoutProduct/CheckoutProduct";
+import EmptyCheckoutProduct from "../../components/EmptyCheckoutProduct/EmptyCheckoutProduct";
+import leftArrow from "../../assets/arrow-left.png";
 import "./cart.css";
 
 function CartPage() {
@@ -81,7 +83,8 @@ function CartPage() {
 					</div>
 					<div className="main-products">
 						{isCartEmpty ? 
-						<p>you fucking car is empty</p> 
+						// <p>you fucking car is empty</p> 
+						<EmptyCheckoutProduct />
 						:
 						productArray
 					}
@@ -89,7 +92,10 @@ function CartPage() {
 						
 					</div>
 					<div className="main-footer">
-						<a href="/productlistpage">Back to Product List</a>
+						<a href="/productlistpage">
+							<img src={leftArrow} alt="" />
+							<span>&nbsp; Back to Product List</span>
+						</a>
 					</div>
 				</div>
 
