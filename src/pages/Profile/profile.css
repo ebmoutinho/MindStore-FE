@@ -1,6 +1,11 @@
-.non-edit-mode, .to-save {
+.non-edit-mode,
+.to-save {
     display: flex;
     flex-direction: column;
+}
+
+.to-save {
+    margin: 147px 0;
 }
 
 .profile-image {
@@ -38,4 +43,15 @@
 .btn-save {
     margin: 0;
     width: 60%;
+}
+
+.footer-wrapper {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.edit-footer {
+    bottom: -360px;
 }

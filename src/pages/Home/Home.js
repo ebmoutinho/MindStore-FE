@@ -13,14 +13,14 @@ function Home() {
 
     useEffect(() => {
         async function fetchAllProducts() {
-            const response = await fetch("https://fakestoreapi.com/products/");
+            const response = await fetch("/api/v1/users/products?direction=ASC&field=id&page=5&pagesize=3");
             const json = await response.json();
             setAllProducts(json);
         }
         fetchAllProducts();
     }, []);
 
-    const myArray = allProducts.slice(0,4).map((product, index) => {
+    const myArray = allProducts.slice(0,3).map((product, index) => {
         return (
             <Link to={`/productlistpage/${product.id}`}>
                 <div className="home-product-border">
