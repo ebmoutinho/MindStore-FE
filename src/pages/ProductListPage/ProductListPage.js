@@ -47,7 +47,7 @@ function ProductListPage() {
 
 	const myArray = allProducts.map((product, index) => {
 		return (
-			<Link to={`/productlistpage/${product.id}`}>
+			<Link key={index} to={`/productlistpage/${product.id}`}>
 				<Product key={index} productProp={product} />
 			</Link>
 		)
@@ -72,16 +72,12 @@ function ProductListPage() {
 						<div className="blank-div"></div>
 					</div>
 
-
-
 					<div className="inner-product-grid">
-					    {myArray}
-                    </div>
+						{myArray}
+					</div>
 				</div>
-
-
-
 			</div>
+
 			<Footer />
 		</>
 	);
