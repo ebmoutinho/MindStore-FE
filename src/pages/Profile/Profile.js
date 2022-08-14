@@ -38,9 +38,9 @@ function Profile(props) {
             const response = await fetch(`https://fakestoreapi.com/users/${userId}`);
 			// const response = await fetch(`https://fakestoreapi.com/users/1`, request);
             const json = await response.json();
-            console.log("json :", json)
+            console.log("json :", json) //TPKENNNNNN
        
-            setUserData(json); //um so obj
+            setUserData(json);
             // setMessage(json.message);
         };
         console.log(fetchedToken);
