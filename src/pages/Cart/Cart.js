@@ -10,6 +10,7 @@ function CartPage() {
 	const [cartColor, setCartColor] = useState(false);
 	const [checkoutClicked, setCheckoutClicked] = useState(false);
 	const [discountClicked, setDiscountClicked] = useState(false);
+	const [isCartEmpty, setCartEmpty] = useState(false);
 	const [allProducts, setAllProducts] = useState([]);
 	const fullName = useRef("");
 	const phoneNumber = useRef("");
@@ -35,6 +36,7 @@ function CartPage() {
 		fetchAllProducts();
 	}, []);
 
+	
 	const productArray = allProducts.map( (product, index) => {
 		return (
 			//assumir que estava a chamar a funcao, estava a executar cada x que checkout product era chamado
@@ -55,6 +57,7 @@ function CartPage() {
 
 	
 	function handleRemove(index) {
+
 		const oldProductsArray = [...allProducts];
 		const newProductsArray = oldProductsArray; //CRIAR ESTA VARIÁVEL INTERMÉDIA
 		newProductsArray.splice(index, 1);
@@ -62,7 +65,11 @@ function CartPage() {
 		console.log("newProductsArray ", newProductsArray.length, newProductsArray)
         console.log("product removed");
         // setRemove(true); //NAO POSSO TER ISTO
-    }
+
+		if(newProductsArray.length === 0) {
+			setCartEmpty(true);
+		}
+    };
 
 	return (
 		<>
@@ -73,7 +80,12 @@ function CartPage() {
 						<h2>Shopping Cart</h2>
 					</div>
 					<div className="main-products">
-						{productArray}
+						{isCartEmpty ? 
+						<p>you fucking car is empty</p> 
+						:
+						productArray
+					}
+					{/* {productArray} */}
 						
 					</div>
 					<div className="main-footer">

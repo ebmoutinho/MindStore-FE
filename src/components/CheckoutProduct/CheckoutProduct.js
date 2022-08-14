@@ -7,9 +7,8 @@ import "./checkoutproduct.css";
 function CheckoutProduct(props) {
 	const { handleRemove, product, productList, index } = props;
 	const [listEmpty, setListEmpty] = useState(false);
-    const [updateList, setUpdateList] = useState();
+	const [updateList, setUpdateList] = useState();
 
-	if (productList.length !== 0) {
 		return (
 			<>
 				<div className="main-product-container">
@@ -39,10 +38,7 @@ function CheckoutProduct(props) {
 				</div>
 			</>
 		);
-	} else if(productList.isEmpty()) {
-		setListEmpty(true);
-		return (<p>your cart is currently empty</p>);
-	};
+	
 
 	//   return (
 	//     <>
