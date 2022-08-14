@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./header.css";
 import { useState } from "react";
 
@@ -6,6 +6,7 @@ function Header(props) {
 	const { loginColor, registerColor, profileColor, productPageColor, cartColor } = props;
 	const fetchedToken = localStorage.getItem("token");
 	console.log("fetchedToken ", fetchedToken);
+	const { userId } = useParams();
 
 	const [isLoginClicked, setIsLoginClicked] = useState(false);
 	const [isRegisterClicked, setIsRegisterClicked] = useState(false);
@@ -82,7 +83,7 @@ function Header(props) {
 						<Link to="/productlistpage" className={productPageColor ? "active" : ""} onClick={handleProductPageClick}>
 							Product
 						</Link>
-						<Link to="/profile" className={profileColor ? "active" : ""} onClick={handleProfileClick}>
+						<Link to={`/profile/${userId}`} className={profileColor ? "active" : ""} onClick={handleProfileClick}>
 							Profile
 						</Link>
 						<Link to="/" onClick={handleLogout}>

@@ -21,7 +21,6 @@ function Login() {
     }, []);
 
 
-
     async function handleSubmit(event) {
         event.preventDefault();
 
@@ -36,6 +35,7 @@ function Login() {
         try {
             const response = await fetch("https://fakestoreapi.com/auth/login", request);
             const json = await response.json();
+            console.log("user object: ", json);
             console.log(response.statusText);
             setStatus(response.status);
 
