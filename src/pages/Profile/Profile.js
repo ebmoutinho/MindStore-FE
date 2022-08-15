@@ -6,45 +6,49 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import avatar from "../../assets/avatar.jpg";
 
-function Profile(props) {
-	const { userId } = props;
+function Profile() {
 	// const { userId } = useParams();
+	const fetchedToken = localStorage.getItem("token");
+	const fetchedId = localStorage.getItem("Id");
+	const adminToken = localStorage.getItem("adminToken");
+	// console.log("admmintoknen", adminToken);
+
 
 	const [profileColor, setProfileColor] = useState(false);
 	const [editProfile, setEditProfile] = useState(false);
-	const name = useRef("");
+	const firstName = useRef("");
+	const lastName = useRef("");
 	const email = useRef("");
 	const password = useRef("");
 	const dateOfBirth = useRef("");
 	const address = useRef("");
-	const phone = useRef("");
+	// const phone = useRef("");
 	const profilePhoto = useRef("");
 	const [isVarTrue, setIsVarTrue] = useState(true);
-	const fetchedToken = localStorage.getItem("token");
 	const [userData, setUserData] = useState({});
-	console.log("lalala", userData);
+	// console.log("lalala", userData);
+	// console.log("id from api", fetchedId);
 
 	useEffect(() => {
 		setProfileColor(true);
 		async function FetchProfile() {
 
-			// const request = {
-			//     method: 'GET',
-			//     headers: {
-			//         "Content-Type": "application/json",
-			//         'Authorization': fetchedToken,
-			//     },
-			// };
+			const request = {
+			    method: 'GET',
+			    headers: {
+			        "Content-Type": "application/json",
+			        'Authorization': adminToken,
+			    },
+			};
 
-			// const response = await fetch(`https://fakestoreapi.com/users/${userId}`);
-			const response = await fetch(`https://fakestoreapi.com/users/1`);
+			const response = await fetch(`/api/v1/admins/users/${fetchedId}`, request);
 			const json = await response.json();
-			console.log("json :", json) //TPKENNNNNN
+			console.log("json :", json) //userId
 
 			setUserData(json);
 			// setMessage(json.message);
 		};
-		console.log(fetchedToken);
+		// console.log(fetchedToken);
 
 		FetchProfile();
 
@@ -84,25 +88,28 @@ function Profile(props) {
 							</div>
 							<form className="form" onSubmit={handleSaveProfileChanges}>
 								<label className="label">
-									<input autoFocus type="text" name="name" ref={name} placeholder="Name" required />
+									<input autoFocus type="text" name="first-name" ref={firstName} placeholder={userData.firstName} required />
 								</label>
 								<label className="label">
-									<input type="email" name="email" ref={email} placeholder="Email" required />
+									<input autoFocus type="text" name="last-name" ref={lastName} placeholder={userData.lastName} required />
+								</label>
+								<label className="label">
+									<input type="email" name="email" ref={email} placeholder={userData.email} required />
 								</label>
 								<label className="label">
 									<input type="password" name="password" ref={password} placeholder="Password" required />
 								</label>
 								<label className="label date">
-									<input type={isVarTrue ? "text" : "date"} onClick={handleVarClick} name="dateOfBirth" ref={dateOfBirth} required placeholder="Date of Birth" />
+									<input type={isVarTrue ? "text" : "date"} onClick={handleVarClick} name="dateOfBirth" ref={dateOfBirth} required placeholder={userData.dateOfBirth} />
 								</label>
 								<label className="label">
-									<input type="text" name="address" ref={address} placeholder="Address" required />
+									<input type="text" name="address" ref={address} placeholder={userData.address} required />
 								</label>
-								<label className="label">
+								{/* <label className="label">
 									<input type="tel" name="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" placeholder="Phone Number" minLength={9} maxLength={9} ref={phone} required />
-								</label>
+								</label> */}
 								<label className="label">
-									<input type="url" name="url" id="url" placeholder="https://photo-example.com" pattern="https://.*" size="30" ref={profilePhoto} required></input>
+									<input type="url" name="url" id="url" placeholder="https://add-your-profile-picture.com" pattern="https://.*" size="30" ref={profilePhoto} required></input>
 								</label>
 								<div className="btn-flex">
 									<button className="button btn-cancel" onClick={handleCancelEditProfile}>
@@ -125,9 +132,11 @@ function Profile(props) {
 
 							<div className="title title-profile">
 								{/* <h2>{name}</h2> */}
-								<h2>Username {userData.username}</h2>
-								<h2>Email {userData.email}</h2>
-								{/* <h2>Name {userData.name.firstname}</h2> */}
+								<h2>{userData.firstName} {" "} {userData.lastName} </h2>
+								<h2>{userData.email}</h2>
+								<h2>{userData.dateOfBirth}</h2>
+								<h2>{userData.address}</h2>
+		
 							</div>
 
 							<button className="button" onClick={handleEditProfile}>
