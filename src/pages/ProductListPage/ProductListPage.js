@@ -1,13 +1,11 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Product from "../../components/Product/Product";
 import searchBar from "../../assets/search-bar.png";
-
 import "./productlistpage.css";
-import { useState, useEffect, useRef } from "react";
 
 function ProductListPage() {
 	const [productPageColor, setProductPageColor] = useState(false);
@@ -24,21 +22,18 @@ function ProductListPage() {
 		console.log(inputSearch.current.value, "icon click here! ");
 	}
 
+	async function handleSortFetch(direction) {
+		const response = await fetch(`/api/v1/users/products?direction=${direction}&field=title&page=1&pagesize=9`)
+		const json = await response.json();
+		setAllProducts(json);
+	}
+
 	useEffect(() => {
 		setProductPageColor(true);
 
 		async function fetchAllProducts() {
-			// const request = {
-			// 	method: "GET",
-			// 	// headers: {
-			// 	// 	"Content-Type": "application/json",
-			// 	// },
-			// };
-
 			const response = await fetch("/api/v1/users/products?direction=ASC&field=title&page=1&pagesize=9");
 			const products = await response.json();
-			console.log(products)
-
 			setAllProducts(products);
 
 			console.log("all products", products);
@@ -49,7 +44,7 @@ function ProductListPage() {
 	const myArray = allProducts.map((product, index) => {
 		return (
 			<Link key={index} to={`/productlistpage/${product.id}`}>
-				<Product key={index} productProp={product} />
+				<Product key={product.id} productProp={product} />
 			</Link>
 		)
 	});
@@ -59,7 +54,10 @@ function ProductListPage() {
 			<Header productPageColor={productPageColor} />
 
 			<div className="product-list-container">
-				<Sidebar className="sidebar" />
+
+				<Sidebar className="sidebar" handleSortFetch={handleSortFetch} />
+
+
 				<div className="first-grid">
 					<div className="inner-search-div">
 						<label className="label-flex">
