@@ -40,6 +40,7 @@ function Header(props) {
     function handleLogout() {
         console.log("trying to logout");
         localStorage.removeItem("token");
+		localStorage.removeItem("adminToken");
     }
 
 	if (fetchedToken === null) {
