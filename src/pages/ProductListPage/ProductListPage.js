@@ -22,11 +22,9 @@ function ProductListPage() {
 		console.log(inputSearch.current.value, "icon click here! ");
 	}
 
-	async function handleSortEvent(direction) {
+	async function handleSortFetch(direction) {
 		const response = await fetch(`/api/v1/users/products?direction=${direction}&field=title&page=1&pagesize=9`)
 		const json = await response.json();
-		setAllProducts([]);
-
 		setAllProducts(json);
 	}
 
@@ -34,7 +32,7 @@ function ProductListPage() {
 		setProductPageColor(true);
 
 		async function fetchAllProducts() {
-			const response = await fetch("/api/v1/users/products?direction=DESC&field=title&page=1&pagesize=9");
+			const response = await fetch("/api/v1/users/products?direction=ASC&field=title&page=1&pagesize=9");
 			const products = await response.json();
 			setAllProducts(products);
 
@@ -43,40 +41,10 @@ function ProductListPage() {
 		fetchAllProducts();
 	}, []);
 
-
-	// useEffect(() => {
-	// 	setProductPageColor(true);
-
-	// 	async function fetchAllProducts() {
-	// 		// const response = await fetch(`/api/v1/users/products?direction=${direction}&field=${field}&page=${page}&pagesize=${pageSize}`);
-	// 		const response = await fetch(`/api/v1/users/products?direction=ASC&field=title&page=1&pagesize=9`);
-	// 		const products = await response.json();
-	// 		console.log(products)
-
-	// 		setAllProducts(products);
-
-	// 		console.log("all products from sort change", products);
-	// 	}
-	// 	fetchAllProducts();
-	// }, [wasFilteredOrSorted]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	const myArray = allProducts.map((product, index) => {
 		return (
 			<Link key={index} to={`/productlistpage/${product.id}`}>
-				<Product key={product.id} productProp={product} /> o react precisa de saber cada copia individual para fazer
+				<Product key={product.id} productProp={product} />
 			</Link>
 		)
 	});
@@ -87,7 +55,7 @@ function ProductListPage() {
 
 			<div className="product-list-container">
 
-				<Sidebar className="sidebar" handleSortEvent={handleSortEvent} />
+				<Sidebar className="sidebar" handleSortFetch={handleSortFetch} />
 
 
 				<div className="first-grid">

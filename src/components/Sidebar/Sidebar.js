@@ -4,11 +4,11 @@ import Sort from '../Sort/Sort';
 import Filter from '../Filter/Filter';
 
 function Sidebar(props) {
-  const { handleSortEvent } = props;
+  const { handleSortFetch } = props;
 
   return (
     <div className='sidebar'>
-      <Sort handleSortEvent={handleSortEvent} />
+      <Sort handleSortFetch={handleSortFetch} />
       <Filter />
     </div>
   )

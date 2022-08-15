@@ -1,45 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import "./sort.css";
+import React, { useState } from 'react';
 import arrowDown from "../../assets/arrow-down.png";
 import arrowRight from "../../assets/arrow-right.png";
+import "./sort.css";
 
 function Sort(props) {
-    const { handleSortEvent } = props;
+    const { handleSortFetch } = props;
     const [choice, setChoice] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
 
-    async function handleChange(e) {
+    function handleChange(e) {
         const direction = e.target.value;
-        handleSortEvent(direction);
-        console.log(direction);
+        handleSortFetch(direction);
     }
-    
+
     function handleClick() {
         setIsClicked(!isClicked);
         setChoice(!choice);
     }
-
-    function SortOptions() {
-        if (choice === true) {
-            return (
-                <div>
-                    <form className='sort-form'>
-                        <label className='sort-radio-label' htmlFor="ascending">
-                            <input className='sort-radio' id='ascending' type="radio" name='sort' onChange={handleChange} value="ASC" />
-                            Ascending Order
-                        </label>
-
-                        <label className='sort-radio-label' htmlFor="descending">
-                            <input className='sort-radio' id='descending' type="radio" name='sort' onChange={handleChange} value="DESC" />
-                            Descending Order
-                        </label>
-                    </form>
-                </div>
-            )
-        }
-        return;
-    }
-
 
     return (
         <>
@@ -51,7 +28,24 @@ function Sort(props) {
                         <img className="arrow-right" src={arrowRight} alt="" />
                     }
                 </button>
-                <SortOptions /> {/*consoante true or false, mostra form ou só botao */}
+
+                {
+                    choice ? (
+                        <div>
+                            <form className='sort-form'>
+                                <label className='sort-radio-label' htmlFor="ascending">
+                                    <input className='sort-radio' id='ascending' type="radio" name='sort' onChange={handleChange} value="ASC" />
+                                    Ascending Order
+                                </label>
+
+                                <label className='sort-radio-label' htmlFor="descending">
+                                    <input className='sort-radio' id='descending' type="radio" name='sort' onChange={handleChange} value="DESC" />
+                                    Descending Order
+                                </label>
+                            </form>
+                        </div>
+                    ) : (null)
+                }
             </div>
         </>
     )
