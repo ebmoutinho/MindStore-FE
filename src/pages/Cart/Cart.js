@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import CheckoutProduct from "../../components/CheckoutProduct/CheckoutProduct";
@@ -8,7 +9,7 @@ import leftArrow from "../../assets/arrow-left.png";
 import "./cart.css";
 
 function CartPage() {
-
+	const { id } = useParams();
 	const [cartColor, setCartColor] = useState(false);
 	const [checkoutClicked, setCheckoutClicked] = useState(false);
 	const [discountClicked, setDiscountClicked] = useState(false);
@@ -22,27 +23,29 @@ function CartPage() {
 
 	useEffect(() => {
 		setCartColor(true);
+
 		async function fetchAllProducts() {
 			const request = {
 				method: "GET",
 				headers: {
+
 					"Content-Type": "application/json",
+					"Authorization": localStorage.getItem("token")
 				},
 			};
-			const response = await fetch("https://fakestoreapi.com/products/", request);
-			const products = await response.json();
 
+			const response = await fetch(`/api/v1/users/shoppingcart/${id}`, request);
+			const products = await response.json();
 			setAllProducts(products);
-			console.log("all products from 1st fetch", products);
 		}
 		fetchAllProducts();
 	}, []);
 
-	
-	const productArray = allProducts.map( (product, index) => {
+
+	const productArray = allProducts.map((product, index) => {
 		return (
 			//assumir que estava a chamar a funcao, estava a executar cada x que checkout product era chamado
-		<CheckoutProduct key={index} handleRemove={() => {handleRemove(index)}} product={product} productList={allProducts} index={index} />
+			<CheckoutProduct key={index} handleRemove={() => { handleRemove(product.id) }} product={product} productList={allProducts} index={index} />
 		);
 	});
 
@@ -51,27 +54,44 @@ function CartPage() {
 		setCheckoutClicked(true);
 		console.log("checkout clicked");
 	}
+
 	function handleDiscount(event) {
 		event.preventDefault();
 		setDiscountClicked(true);
 		console.log("discount clicked");
 	}
 
-	
-	function handleRemove(index) {
+
+	async function handleRemove(productId) {
+
+		const request = {
+			method: "PATCH",
+			headers: {
+
+				"Content-Type": "application/json",
+				"Authorization": localStorage.getItem("token")
+			},
+		};
+
+		const response = await fetch(`/api/v1/users/removefromcart?userid=${id}&productid=${productId}`, request);
+		console.log(response);
+		const json = await response.json();
+		console.log(json);
+
+		// fazer set de acordo com restante list
 
 		const oldProductsArray = [...allProducts];
 		const newProductsArray = oldProductsArray; //CRIAR ESTA VARIÁVEL INTERMÉDIA
-		newProductsArray.splice(index, 1);
-		setAllProducts(newProductsArray);
-		console.log("newProductsArray ", newProductsArray.length, newProductsArray)
-        console.log("product removed");
-        // setRemove(true); //NAO POSSO TER ISTO
+		// newProductsArray.splice(index, 1);
+		// setAllProducts(newProductsArray);
+		// console.log("newProductsArray ", newProductsArray.length, newProductsArray)
+		// console.log("product removed");
+		// setRemove(true); //NAO POSSO TER ISTO
 
-		if(newProductsArray.length === 0) {
+		if (newProductsArray.length === 0) {
 			setCartEmpty(true);
 		}
-    };
+	};
 
 	return (
 		<>
@@ -82,14 +102,14 @@ function CartPage() {
 						<h2>Shopping Cart</h2>
 					</div>
 					<div className="main-products">
-						{isCartEmpty ? 
-						// <p>you fucking car is empty</p> 
-						<EmptyCheckoutProduct />
-						:
-						productArray
-					}
-					{/* {productArray} */}
-						
+						{isCartEmpty ?
+							// <p>you fucking car is empty</p> 
+							<EmptyCheckoutProduct />
+							:
+							productArray
+						}
+						{/* {productArray} */}
+
 					</div>
 					<div className="main-footer">
 						<a href="/productlistpage">

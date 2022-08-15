@@ -23,8 +23,8 @@ function Home() {
     const myArray = allProducts.slice(0,3).map((product, index) => {
         return (
             <Link to={`/productlistpage/${product.id}`}>
-                <div className="home-product-border">
-                    <Product key={index} productProp={product} />
+                <div key={index} className="home-product-border">
+                    <Product key={product.id} productProp={product} />
                 </div>
             </Link>
         )
