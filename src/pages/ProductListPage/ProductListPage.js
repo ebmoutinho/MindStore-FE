@@ -40,6 +40,7 @@ function ProductListPage() {
 			console.log(products)
 
 			setAllProducts(products);
+
 			console.log("all products", products);
 		}
 		fetchAllProducts();

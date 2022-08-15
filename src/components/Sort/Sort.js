@@ -6,9 +6,16 @@ import arrowRight from "../../assets/arrow-right.png";
 function Sort() {
     const [choice, setChoice] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
+    
 
-    function handleChange(e) {
+    async function handleChange(e) {
         console.log(e.target.value)
+
+        const direction = e.target.value;
+
+        const response = await fetch(`/api/v1/users/products?direction=${direction}&field=title&page=1&pagesize=9`)
+        const json = await response.json();
+        console.log(json);
     }
 
     function handleClick() {
@@ -27,7 +34,7 @@ function Sort() {
                         </label>
 
                         <label className='sort-radio-label' htmlFor="descending">
-                            <input className='sort-radio' id='descending' type="radio" name='sort' onChange={handleChange} value="DESC"/>
+                            <input className='sort-radio' id='descending' type="radio" name='sort' onChange={handleChange} value="DESC" />
                             Descending Order
                         </label>
                     </form>
