@@ -38,6 +38,9 @@
     justify-content: space-between;
     width: 100%;
 }
+.btn-flex-margin {
+    margin-top: 20px;
+}
 
 .btn-cancel {
     background-color: transparent;
@@ -45,11 +48,15 @@
     color: var(--primary-color);
     margin: 0;
     width: 35%;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
 }
 
 .btn-save {
     margin: 0;
     width: 60%;
+    text-align: center;
 }
 
 .footer-wrapper {
@@ -61,4 +68,35 @@
 
 .edit-footer {
     bottom: -360px;
+}
+
+.description-profile {
+    margin-bottom: 20px;
+    font-weight: 200;
+    text-align: center;
+    /* font-family: "Prata", serif; */
+    font-size: 16px;
+    color: rgb(175, 175, 175);
+}
+
+.success-h2 {
+    margin-bottom: 20px;
+}
+
+.edit-profile-button {
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;
+    text-decoration: underline;
+}
+.success-message {
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;
 }

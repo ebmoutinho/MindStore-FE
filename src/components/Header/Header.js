@@ -41,6 +41,8 @@ function Header(props) {
         console.log("trying to logout");
         localStorage.removeItem("token");
 		localStorage.removeItem("adminToken");
+		// localStorage.removeItem("adminToken");
+		// picture
     }
 
 	if (fetchedToken === null) {
@@ -84,7 +86,8 @@ function Header(props) {
 						<Link to="/productlistpage" className={productPageColor ? "active" : ""} onClick={handleProductPageClick}>
 							Products
 						</Link>
-						<Link to={`/profile/${userId}`} className={profileColor ? "active" : ""} onClick={handleProfileClick}>
+						{/* <Link to={`/profile/${userId}`} className={profileColor ? "active" : ""} onClick={handleProfileClick}> */}
+						<Link to={`/profile`} className={profileColor ? "active" : ""} onClick={handleProfileClick}>
 							Profile
 						</Link>
 						<Link to="/" onClick={handleLogout}>

@@ -1,6 +1,13 @@
 import React from "react";
+import RegisterSuccessfull from "../../components/RegisterSuccessfull/RegisterSuccessfull";
 
 function EmptyPage() {
+
+	return(
+		<RegisterSuccessfull />
+	);
+
+	/*
 	// const response = fetch("api/v1/users/products?direction=ASC&field=title&page=3&pagesize=4", {
 	// 	method: "GET",
 	// 	headers: {
@@ -40,7 +47,7 @@ function EmptyPage() {
 		<div>
 			<p>this an empty page yo</p>
 		</div>
-	);
+	);*/
 }
 
 export default EmptyPage;

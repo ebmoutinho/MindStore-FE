@@ -14,6 +14,9 @@ function Profile() {
 	const [editProfile, setEditProfile] = useState(false);
 	const [userData, setUserData] = useState({});
 	const [newInfo, setNewInfo] = useState(false);
+	const [changesSaved, setChangesSaved] = useState(false);
+	const [message, setMessage] = useState("");
+	const [userPhoto, setUserPhoto] = useState(avatar);
 	const firstName = useRef("");
 	const lastName = useRef("");
 	const email = useRef("");
@@ -43,12 +46,15 @@ function Profile() {
 			const response = await fetch(`/api/v1/admins/users/${fetchedId}`, request);
 			const json = await response.json();
 			setUserData(json);
+			if(localStorage.getItem('picture') === undefined) {
+				setUserPhoto(avatar);
+			} else {
+				setUserPhoto(localStorage.getItem('picture'));
+			}
+			//ir buscar a photo a localStorage, SE TIVER
 		}
 		fetchProfile();
-
 	}, [newInfo]);
-
-
 
 	async function handleSaveProfileChanges(event) {
 		event.preventDefault();
@@ -98,11 +104,22 @@ function Profile() {
 
 		const response = await fetch(`/api/v1/users/${fetchedId}`, request);
 		const json = await response.json();
-		const newUserData = json;
-		console.log("new user data", newUserData);
 
-		setNewInfo(true);
-		setUserData(newUserData);
+		if(response.status === 200) {
+			const newUserData = json;
+			console.log("new user data", newUserData);
+	
+			setNewInfo(true);
+			setUserData(newUserData);
+			setMessage("Your changes were successfully saved!");
+			if(profilePhoto.current.value !== "") {
+				localStorage.setItem('picture', profilePhoto.current.value);
+				setUserPhoto(profilePhoto.current.value);
+			}
+			//ir buscar o ref ao form e po-lo na localStorage
+		} else {
+			setMessage("Oops! Something went wrong while trying to update your profile");
+		}
 	};
 
 	function handleEditProfile() {
@@ -111,6 +128,8 @@ function Profile() {
 	}
 	function handleSaveChangesButton() {
 		console.log("button to Save Changes");
+		setChangesSaved(true);
+		// setEditProfile(!editProfile);
 	}
 
 	function handleCancelEditProfile() {
@@ -124,7 +143,8 @@ function Profile() {
 			{editProfile ? (
 				<>
 					<div className="container to-save">
-						<img src={avatar} alt="" className="profile-image" />
+						{/* <img src={avatar} alt="" className="profile-image" /> */}
+						<img src={userPhoto} alt="" className="profile-image" />
 
 						<div className="title title-to-change">
 							<h2>Profile</h2>
@@ -154,7 +174,7 @@ function Profile() {
 							<label className="label">
 								<input type="url" name="url" id="url" placeholder="https://add-your-profile-picture.com" pattern="https://.*" size="30" ref={profilePhoto}></input>
 							</label>
-							<div className="btn-flex">
+							<div className="btn-flex btn-flex-margin">
 								<button className="button btn-cancel" onClick={handleCancelEditProfile}>
 									Cancel
 								</button>
@@ -163,6 +183,8 @@ function Profile() {
 								</button>
 							</div>
 						</form>
+						<div className={message === "Your changes were successfully saved!" ? 
+							"success-message" : "error-message" }>{message}</div>
 					</div>
 					<div className="footer-wrapper edit-footer">
 						<Footer />
@@ -171,18 +193,20 @@ function Profile() {
 			) : (
 				<>
 					<div className="container non-edit-mode">
-						<img src={avatar} alt="" className="profile-image" />
+						<img src={userPhoto} alt="" className="profile-image" />
 
-						<div className="title title-profile">
+						<div className="title title-profile success-h2">
 							<h2>
 								{userData.firstName} {userData.lastName}{" "}
 							</h2>
-							<h2>{userData.email}</h2>
-							<h2>{userData.dateOfBirth}</h2>
-							<h2>{userData.address}</h2>
+						</div>
+						<div className="description-profile">
+							<p>{userData.email}</p>
+							<p>{userData.dateOfBirth}</p>
+							<p>{userData.address}</p>
 						</div>
 
-						<button className="button" onClick={handleEditProfile}>
+						<button className="button edit-profile-button" onClick={handleEditProfile}>
 							Edit Profile
 						</button>
 					</div>
