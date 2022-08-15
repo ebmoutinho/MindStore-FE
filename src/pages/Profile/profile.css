@@ -6,6 +6,13 @@
 
 .to-save {
     margin: 147px 0;
+    min-width: 400px;
+}
+
+@media (min-height: 900px) {
+    .to-save {
+        margin: 0 0;
+    }
 }
 
 .profile-image {
