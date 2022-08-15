@@ -54,6 +54,8 @@ function ProductDetailPage() {
 
                     <RenderRating productRating={productRating} />
 
+                    <p className="product-detail_price">{productData.price}€</p>
+
                     <p className='product-detail_description'>{productData.description}</p>
 
                     <div className="product-detail_cart-options">
