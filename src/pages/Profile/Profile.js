@@ -1,37 +1,37 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./profile.css";
 import "../Credentials/credentials.css";
-// import { useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import avatar from "../../assets/avatar.jpg";
 
 function Profile() {
-	// const { userId } = useParams();
 	const fetchedToken = localStorage.getItem("token");
 	const fetchedId = localStorage.getItem("Id");
 	const adminToken = localStorage.getItem("adminToken");
-	// console.log("admmintoknen", adminToken);
-	// console.log("profile user token lala" , fetchedToken);
 
 	const [profileColor, setProfileColor] = useState(false);
 	const [editProfile, setEditProfile] = useState(false);
+	const [userData, setUserData] = useState({});
+	const [newInfo, setNewInfo] = useState(false);
 	const firstName = useRef("");
 	const lastName = useRef("");
 	const email = useRef("");
 	const password = useRef("");
 	const address = useRef("");
 	const profilePhoto = useRef("");
-	// const dateOfBirth = useRef("");
-	// const phone = useRef("");
-	// const [isVarTrue, setIsVarTrue] = useState(true);
-	const [userData, setUserData] = useState({});
-	const [newInfo, setNewInfo] = useState(false);
-	// console.log("id from api", fetchedId);
+
+	let interFirst = "";
+	let interLast = "";
+	let interEmail = "";
+	let interPassword = "";
+	let interAddress = "";
 
 	useEffect(() => {
+		const fetchedId = localStorage.getItem("Id");
+
 		setProfileColor(true);
-		async function FetchProfile() {
+		async function fetchProfile() {
 			const request = {
 				method: "GET",
 				headers: {
@@ -42,58 +42,47 @@ function Profile() {
 
 			const response = await fetch(`/api/v1/admins/users/${fetchedId}`, request);
 			const json = await response.json();
-			// console.log("json from GET:", json); //userId
-
 			setUserData(json);
-			// setMessage(json.message);
 		}
-		// console.log(fetchedToken);
+		fetchProfile();
 
-		FetchProfile();
-		
 	}, [newInfo]);
 
+
+
 	async function handleSaveProfileChanges(event) {
-		console.log("INSIDE HANDLE SAVE PROFILE CHANGES");
 		event.preventDefault();
-		// console.log(firstName);
 
-		let interFirst = "";
-		let interLast = "";
-		let interEmail = "";
-		let interPassword = "";
-		let interAddress = "";
-
-		if (firstName.current === "" ) {
+		if (firstName.current.value === "") {
 			interFirst = userData.firstName;
 		} else {
 			interFirst = firstName.current.value;
 		}
 
-		if (lastName.current === "") {
+		if (lastName.current.value === "") {
 			interLast = userData.lastName;
 		} else {
 			interLast = lastName.current.value;
 		}
 
-		if (email.current === "") {
+		if (email.current.value === "") {
 			interEmail = userData.email;
 		} else {
 			interEmail = email.current.value;
 		}
 
-		if (password.current === "") {
+		if (password.current.value === "") {
 			interPassword = userData.password;
 		} else {
 			interPassword = password.current.value;
 		}
 
-		if (address.current === "") {
+		if (address.current.value === "") {
 			interAddress = userData.address;
 		} else {
 			interAddress = address.current.value;
 		}
-		console.log(interFirst, interLast, interEmail, interPassword, interAddress);
+		console.log("print info:", interFirst, interLast, interEmail, interPassword, interAddress);
 
 		const request = {
 			method: "PATCH",
@@ -106,23 +95,15 @@ function Profile() {
 				address: interAddress, //address.current.value,
 			}),
 		};
-		// {(newInfo === true) ?
-		// 	(firstName: firstName.current.value) :
-		// 	(firstName: uName)}
 
 		const response = await fetch(`/api/v1/users/${fetchedId}`, request);
 		const json = await response.json();
-		// console.log("editprofile response json", json);
 		const newUserData = json;
+		console.log("new user data", newUserData);
 
 		setNewInfo(true);
 		setUserData(newUserData);
 	};
-	// console.log("userData after editProfile", userData);
-
-	// function handleVarClick() {
-	// 	setIsVarTrue(false);
-	// }
 
 	function handleEditProfile() {
 		console.log("button edit profile");
@@ -135,7 +116,6 @@ function Profile() {
 	function handleCancelEditProfile() {
 		setEditProfile(false);
 	}
-	function handleInputChanges() {}
 
 	return (
 		<>
