@@ -10,19 +10,10 @@ function Product(props) {
 
 	useEffect( () => {
 		async function fetchASingleProduct() {
-			const request = {
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					// 'Authorization': fetchedToken,
-				},
-			};
-	
-			const response = await fetch(`/api/v1/users/products/${productProp.id}`, request);
-			const product = await response.json();
+			const response = await fetch(`/api/v1/users/products/${productProp.id}`);
+			const json = await response.json();
 
-			setProductData(productProp);
-			console.log("product: ", product); 
+			setProductData(json);
 		};
 		fetchASingleProduct();
 	}, []);

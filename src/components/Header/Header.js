@@ -5,7 +5,7 @@ import { useState } from "react";
 function Header(props) {
 	const { loginColor, registerColor, profileColor, productPageColor, cartColor } = props;
 	const fetchedToken = localStorage.getItem("token");
-	console.log("fetchedToken ", fetchedToken);
+	// console.log("fetchedToken ", fetchedToken);
 	const { userId } = useParams();
 
 	const [isLoginClicked, setIsLoginClicked] = useState(false);
