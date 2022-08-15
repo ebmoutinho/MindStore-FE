@@ -1,17 +1,18 @@
 import React from "react";
+import {Link} from "react-router-dom"
 import QuantityButton from "../../components/QuantityButton/QuantityButton";
 import "./checkoutproduct.css";
 
 function CheckoutProduct(props) {
-	const { handleRemove, product, index } = props;
+	const { handleRemove, product } = props;
 
 		return (
 			<>
 				<div className="main-product-container">
 					<div className="image-div">
-						<a href="#">
+						<Link to={`/productlistpage/${product.id}`}>
 							<img src={product.image} alt="product" />
-						</a>
+						</Link>
 					</div>
 
 					<div className="details-div">

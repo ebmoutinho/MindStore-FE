@@ -15,6 +15,7 @@ function CartPage() {
 	const [discountClicked, setDiscountClicked] = useState(false);
 	const [isCartEmpty, setCartEmpty] = useState(false);
 	const [allProducts, setAllProducts] = useState([]);
+	const [total, setTotal] = useState();
 	const fullName = useRef("");
 	const phoneNumber = useRef("");
 	const email = useRef("");
@@ -24,23 +25,37 @@ function CartPage() {
 	useEffect(() => {
 		setCartColor(true);
 
+		
 		async function fetchAllProducts() {
 			const request = {
 				method: "GET",
 				headers: {
-
 					"Content-Type": "application/json",
 					"Authorization": localStorage.getItem("token")
 				},
 			};
-
+			
 			const response = await fetch(`/api/v1/users/shoppingcart/${id}`, request);
 			const products = await response.json();
 			setAllProducts(products);
 		}
 		fetchAllProducts();
 	}, []);
+	
+	async function fetchTotal() {
+		const request = {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": localStorage.getItem("token")
+			},
+		};
 
+		const response = await fetch(`/api/v1/users/shoppingcart/price/${id}`, request);
+		const text = await response.text();
+		setTotal(text);
+	}
+	fetchTotal();
 
 	const productArray = allProducts.map((product, index) => {
 		return (
@@ -63,7 +78,6 @@ function CartPage() {
 
 
 	async function handleRemove(productId) {
-
 		const request = {
 			method: "PATCH",
 			headers: {
@@ -74,21 +88,12 @@ function CartPage() {
 		};
 
 		const response = await fetch(`/api/v1/users/removefromcart?userid=${id}&productid=${productId}`, request);
-		console.log(response);
 		const json = await response.json();
-		console.log(json);
+		const finalProducts = json;
+		setAllProducts(finalProducts);
+		fetchTotal();
 
-		// fazer set de acordo com restante list
-
-		const oldProductsArray = [...allProducts];
-		const newProductsArray = oldProductsArray; //CRIAR ESTA VARIÁVEL INTERMÉDIA
-		// newProductsArray.splice(index, 1);
-		// setAllProducts(newProductsArray);
-		// console.log("newProductsArray ", newProductsArray.length, newProductsArray)
-		// console.log("product removed");
-		// setRemove(true); //NAO POSSO TER ISTO
-
-		if (newProductsArray.length === 0) {
+		if (finalProducts.length === 0) {
 			setCartEmpty(true);
 		}
 	};
@@ -127,7 +132,7 @@ function CartPage() {
 							<h2>Summary</h2>
 							<div className="payment-header-info">
 								<p>Total:</p>
-								<p>369€</p>
+								<p>{total}</p>
 
 							</div>
 						</div>
