@@ -12,7 +12,7 @@
     background-color: white;
     width: 45%;
     text-align: center;
-    height: 800px;
+    height: 1000px;
     object-fit: contain;
 }
 
@@ -39,6 +39,13 @@
 
 .rating-star {
     margin-right: 4px;
+}
+
+.product-detail_price {
+    margin-top: 80px;
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--primary-color);
 }
 
 .product-detail_description {
