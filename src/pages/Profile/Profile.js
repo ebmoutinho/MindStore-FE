@@ -16,19 +16,19 @@ function Profile() {
 	const [newInfo, setNewInfo] = useState(false);
 	const [changesSaved, setChangesSaved] = useState(false);
 	const [message, setMessage] = useState("");
-	const [userPhoto, setUserPhoto] = useState(avatar);
 	const firstName = useRef("");
 	const lastName = useRef("");
 	const email = useRef("");
 	const password = useRef("");
 	const address = useRef("");
-	const profilePhoto = useRef("");
+	const image = useRef("");
 
 	let interFirst = "";
 	let interLast = "";
 	let interEmail = "";
 	let interPassword = "";
 	let interAddress = "";
+	let interImage = "";
 
 	useEffect(() => {
 		const fetchedId = localStorage.getItem("Id");
@@ -46,11 +46,7 @@ function Profile() {
 			const response = await fetch(`/api/v1/admins/users/${fetchedId}`, request);
 			const json = await response.json();
 			setUserData(json);
-			if(localStorage.getItem('picture') === undefined) {
-				setUserPhoto(avatar);
-			} else {
-				setUserPhoto(localStorage.getItem('picture'));
-			}
+			// console.log(json.image);
 			//ir buscar a photo a localStorage, SE TIVER
 		}
 		fetchProfile();
@@ -58,6 +54,7 @@ function Profile() {
 
 	async function handleSaveProfileChanges(event) {
 		event.preventDefault();
+		console.log(image);
 
 		if (firstName.current.value === "") {
 			interFirst = userData.firstName;
@@ -88,7 +85,13 @@ function Profile() {
 		} else {
 			interAddress = address.current.value;
 		}
-		console.log("print info:", interFirst, interLast, interEmail, interPassword, interAddress);
+
+		if (image.current.value === "") {
+			interImage = userData.image;
+		} else {
+			interImage = image.current.value;
+		}
+		console.log("print info:", interFirst, interLast, interEmail, interPassword, interAddress, interImage);
 
 		const request = {
 			method: "PATCH",
@@ -99,6 +102,7 @@ function Profile() {
 				email: interEmail, //email.current.value,
 				password: interPassword, // password.current.value,
 				address: interAddress, //address.current.value,
+				image: interImage, //image.current.value
 			}),
 		};
 
@@ -112,11 +116,6 @@ function Profile() {
 			setNewInfo(true);
 			setUserData(newUserData);
 			setMessage("Your changes were successfully saved!");
-			if(profilePhoto.current.value !== "") {
-				localStorage.setItem('picture', profilePhoto.current.value);
-				setUserPhoto(profilePhoto.current.value);
-			}
-			//ir buscar o ref ao form e po-lo na localStorage
 		} else {
 			setMessage("Oops! Something went wrong while trying to update your profile");
 		}
@@ -144,7 +143,7 @@ function Profile() {
 				<>
 					<div className="container to-save">
 						{/* <img src={avatar} alt="" className="profile-image" /> */}
-						<img src={userPhoto} alt="" className="profile-image" />
+						<img src={userData.image} alt="" className="profile-image" />
 
 						<div className="title title-to-change">
 							<h2>Profile</h2>
@@ -172,7 +171,7 @@ function Profile() {
 									<input type="tel" name="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" placeholder="Phone Number" minLength={9} maxLength={9} ref={phone} required />
 								</label> */}
 							<label className="label">
-								<input type="url" name="url" id="url" placeholder="https://add-your-profile-picture.com" pattern="https://.*" size="30" ref={profilePhoto}></input>
+								<input type="url" name="url" id="url" placeholder="https://add-your-profile-picture.com" size="200" ref={image}></input>
 							</label>
 							<div className="btn-flex btn-flex-margin">
 								<button className="button btn-cancel" onClick={handleCancelEditProfile}>
@@ -193,7 +192,7 @@ function Profile() {
 			) : (
 				<>
 					<div className="container non-edit-mode">
-						<img src={userPhoto} alt="" className="profile-image" />
+						<img src={userData.image} alt="" className="profile-image" />
 
 						<div className="title title-profile success-h2">
 							<h2>

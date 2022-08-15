@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./header.css";
 import { useState } from "react";
 
@@ -6,7 +6,7 @@ function Header(props) {
 	const { loginColor, registerColor, profileColor, productPageColor, cartColor } = props;
 	const fetchedToken = localStorage.getItem("token");
 	// console.log("fetchedToken from Header \n", fetchedToken);
-	const { userId } = useParams();
+	// const { userId } = useParams();
 
 	const [isLoginClicked, setIsLoginClicked] = useState(false);
 	const [isRegisterClicked, setIsRegisterClicked] = useState(false);
@@ -41,8 +41,6 @@ function Header(props) {
         console.log("trying to logout");
         localStorage.removeItem("token");
 		localStorage.removeItem("adminToken");
-		// localStorage.removeItem("adminToken");
-		// picture
     }
 
 	if (fetchedToken === null) {
