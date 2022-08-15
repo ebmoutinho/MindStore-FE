@@ -89,8 +89,10 @@ function Header(props) {
 						</Link>
 						<Link to="/" onClick={handleLogout}>
 							Logout
-						</Link>
-						<Link to="/cart" className={cartColor ? "pink-cart" : "black-cart"} onClick={handleCartClick}></Link>
+							</Link>
+							
+							{/* <Link to="/cart" className={cartColor ? "pink-cart" : "black-cart"} onClick={handleCartClick}></Link> */}
+							<Link to={`/cart/${localStorage.getItem("Id")}`} className={cartColor ? "pink-cart" : "black-cart"} onClick={handleCartClick}></Link>
 					</div>
 				</nav>
 			</header>

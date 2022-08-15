@@ -24,7 +24,7 @@ function App() {
           <Route path="profile/:userId" element={<Profile />} />
           <Route path="productlistpage" element={<ProductListPage />} />
           <Route path="productlistpage/:id" element={<ProductDetail />} />
-          <Route path="cart" element={<CartPage />} />
+          <Route path="cart/:id" element={<CartPage />} />
           <Route path="emptypage" element={<EmptyPage />} />
           <Route path="checkout" element={<Checkout />} />
         </Routes>

@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
 import Header from '../../components/Header/Header'
+import QuantityButton from '../../components/QuantityButton/QuantityButton';
 import RenderRating from '../../components/RenderRating/RenderRating';
 import arrowLeft from '../../assets/arrow-left.png'
 import "./productDetail.css"
 
 function ProductDetailPage() {
     const { id } = useParams();
-    const [quantity, setQuantity] = useState(1);
     const [productData, setProductData] = useState({});
     const [productRating, setProductRating] = useState({});
+    const userId = localStorage.getItem('Id');
 
     useEffect(() => {
         async function fetchById() {
@@ -21,18 +22,17 @@ function ProductDetailPage() {
         fetchById();
     }, []);
 
-    function handleDecrement() {
-        if (quantity === 1) {
-            return;
-        }
-        setQuantity(quantity - 1);
-    }
 
-    function handleIncrement() {
-        if (quantity === 10) {
-            return;
-        }
-        setQuantity(quantity + 1);
+    async function handleAddToUserCart() {
+        const productId = productData.id;
+        const request = {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json", "Authorization": localStorage.getItem("token") },
+        }; 
+
+        const response = await fetch(`/api/v1/users/addtocart?userid=${userId}&productid=${productId}`, request);
+        const json = await response.json();
+        console.log("product added to user cart",json);
     }
 
     return (
@@ -59,14 +59,10 @@ function ProductDetailPage() {
                     <p className='product-detail_description'>{productData.description}</p>
 
                     <div className="product-detail_cart-options">
-                        <div className='product-detail_quantity'>
-                            <button onClick={handleDecrement} className='input-btn'>-</button>
-                            <input type="number" value={quantity} readOnly />
-                            <button onClick={handleIncrement} className='input-btn'>+</button>
-                        </div>
+                        <QuantityButton />
 
                         <div>
-                            <Link to="/cart" className="product-detail_cart-button">Add to Cart</Link>
+                            <Link to={`/cart/${userId}`} className="product-detail_cart-button" onClick={handleAddToUserCart}>Add to Cart</Link>
                         </div>
                     </div>
                 </div>
