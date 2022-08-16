@@ -5,6 +5,8 @@ import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Product from "../../components/Product/Product";
 import searchBar from "../../assets/search-bar.png";
+import heartEmpty from "../../assets/heart-empty.png";
+import heartFull from "../../assets/heart-full.png";
 import "./productlistpage.css";
 
 function ProductListPage() {
@@ -14,7 +16,8 @@ function ProductListPage() {
 	const inputSearch = useRef("");
 	const [sort, setSort] = useState("ASC");
 	const [link, setLink] = useState("?field=title&pagesize=9&direction=");
-	const [page, setPage] = useState("1");	
+	const [page, setPage] = useState("1");
+	const [isButtonLiked, setIsButtonLiked] = useState(false);
 
 	useEffect(() => {
 		setProductPageColor(true);
@@ -27,6 +30,7 @@ function ProductListPage() {
 		}
 		fetchAllProducts();
 	}, [link, sort, page]);
+
 
 	function handleEnterPress(event) {
 		if (event.key === "Enter") {
@@ -72,14 +76,23 @@ function ProductListPage() {
 		setLink(link);
 		console.log("rating fetch");
 	}
-
+	
+	function handleLikeClick(index) {
+		console.log(index);
+		setIsButtonLiked(!isButtonLiked);
+	};
 
 
 	const myArray = allProducts.map((product, index) => {
 		return (
-			<Link key={index} to={`/productlistpage/${product.id}`}>
-				<Product key={product.id} productProp={product} />
-			</Link>
+			<div className="like-div">
+				<button onClick={() => { handleLikeClick(product.id) }} className="product-button">
+					<img id={product.id} src={isButtonLiked ? heartFull : heartEmpty} alt="" />
+				</button>
+				<Link key={index} to={`/productlistpage/${product.id}`}>
+					<Product key={product.id} productProp={product} />
+				</Link>
+			</div>
 		)
 	});
 

@@ -138,3 +138,12 @@
         margin: 0 auto 40px ;
     }
 }
+.like-div {
+    position: relative;
+}
+.product-button {
+    cursor: pointer;
+    background-color: transparent;
+    position: absolute;
+    z-index: 1;
+}
