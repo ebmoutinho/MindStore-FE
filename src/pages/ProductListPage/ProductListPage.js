@@ -52,13 +52,14 @@ function ProductListPage() {
 		setLink(link);
 	}
 
-	async function handlePriceFetch(priceObj) { //Object { min: 449, max: 1000 }
+	async function handlePriceFetch(link) { //Object { min: 449, max: 1000 }
 		// let minPrice = priceObj.min;
 		// let maxPrice = priceObj.max;
 		// const response = await fetch(`/api/v1/users/products/price?direction=${sort}&page=1&pagesize=9&min=${minPrice}&max=${maxPrice}`);
 		// // /api/v1/users/products/price?direction=ASC&page=1&pagesize=9&min=1&max=5000
 		// const json = await response.json();
 		// setAllProducts(json);
+		setLink(link);
 		console.log("price fetch");
 	}
 
