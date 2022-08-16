@@ -13,19 +13,20 @@ function ProductListPage() {
 	const [pageBtnValue, setPageBtnValue] = useState(1);
 	const inputSearch = useRef("");
 	const [sort, setSort] = useState("ASC");
-	const [link, setLink] = useState("?field=title&page=1&pagesize=9&direction=");
+	const [link, setLink] = useState("?field=title&pagesize=9&direction=");
+	const [page, setPage] = useState("1");	
 
 	useEffect(() => {
 		setProductPageColor(true);
 
 		async function fetchAllProducts() {
-			const response = await fetch(`/api/v1/users/products${link}${sort}`);
+			const response = await fetch(`/api/v1/users/products${link}${sort}&page=${page}`);
 			const products = await response.json();
 			setAllProducts(products);
 			console.log("all products", products);
 		}
 		fetchAllProducts();
-	}, [link,sort]);
+	}, [link, sort, page]);
 
 	function handleEnterPress(event) {
 		if (event.key === "Enter") {
@@ -89,11 +90,12 @@ function ProductListPage() {
 	}
 
 	async function handlePageChange(event) {
-		setPageBtnValue(event.target.value);
-		const pageNumber = event.target.value;
-		const response = await fetch(`/api/v1/users/products?direction=DESC&field=title&page=${pageNumber}&pagesize=9`);
-		const products = await response.json();
-		setAllProducts(products);
+		// setPageBtnValue(event.target.value);
+		// const pageNumber = event.target.value;
+		// const response = await fetch(`/api/v1/users/products?direction=DESC&field=title&page=${pageNumber}&pagesize=9`);
+		// const products = await response.json();
+		// setAllProducts(products);
+		setPage(event.target.value);
 	}
 
 	return (
