@@ -10,8 +10,8 @@ import "./productlistpage.css";
 function ProductListPage() {
 	const [productPageColor, setProductPageColor] = useState(false);
 	const [allProducts, setAllProducts] = useState([]);
+	const [pageBtnValue, setPageBtnValue] = useState(1);
 	const inputSearch = useRef("");
-	const [pageClicked, setPageClicked] = useState(1);
 
 	useEffect(() => {
 		setProductPageColor(true);
@@ -20,7 +20,6 @@ function ProductListPage() {
 			const response = await fetch(`/api/v1/users/products?direction=DESC&field=title&page=1&pagesize=9`);
 			const products = await response.json();
 			setAllProducts(products);
-
 			console.log("all products", products);
 		}
 		fetchAllProducts();
@@ -81,6 +80,7 @@ function ProductListPage() {
 	}
 
 	async function handlePageChange(event) {
+		setPageBtnValue(event.target.value);
 		const pageNumber = event.target.value;
 		const response = await fetch(`/api/v1/users/products?direction=DESC&field=title&page=${pageNumber}&pagesize=9`);
 		const products = await response.json();
@@ -116,21 +116,9 @@ function ProductListPage() {
 			</div>
 
 			<div className="pagination">
-				<label htmlFor="page1">
-					<input type="radio" name="page" id="page1" value={1} onClick={handlePageChange} />
-					1
-				</label>
-
-				<label htmlFor="page2">
-					<input type="radio" name="page" id="page2" value={2} onClick={handlePageChange} />
-					2
-				</label>
-
-				<label htmlFor="page3">
-					<input type="radio" name="page" id="page2" value={3} onClick={handlePageChange} />
-					3
-				</label>
-
+				<button value={1} onClick={handlePageChange} className={pageBtnValue === 1 ? "btn-page-numbers active" : "btn-page-numbers" }>1</button>
+				<button value={2} onClick={handlePageChange} className="btn-page-numbers">2</button>
+				<button value={3} onClick={handlePageChange} className="btn-page-numbers">3</button>
 			</div>
 
 			<Footer />
