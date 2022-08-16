@@ -89,7 +89,8 @@ function Filter(props) {
 	function CategoryButton() {
 		function handleCategoryChange(event) {
 			const field = event.target.value;
-			handleCategoryFetch(field);
+			const link =`/category?category=${field}&page=1&pagesize=9&direction=`;
+			handleCategoryFetch(link);
 			console.log(event.target.value);
 		}
 
