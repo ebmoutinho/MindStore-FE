@@ -12,18 +12,20 @@ function ProductListPage() {
 	const [allProducts, setAllProducts] = useState([]);
 	const [pageBtnValue, setPageBtnValue] = useState(1);
 	const inputSearch = useRef("");
+	const [sort, setSort] = useState("ASC");
+	const [link, setLink] = useState("?field=title&page=1&pagesize=9&direction=");
 
 	useEffect(() => {
 		setProductPageColor(true);
 
 		async function fetchAllProducts() {
-			const response = await fetch(`/api/v1/users/products?direction=DESC&field=title&page=1&pagesize=9`);
+			const response = await fetch(`/api/v1/users/products${link}${sort}`);
 			const products = await response.json();
 			setAllProducts(products);
 			console.log("all products", products);
 		}
 		fetchAllProducts();
-	}, []);
+	}, [link,sort]);
 
 	function handleEnterPress(event) {
 		if (event.key === "Enter") {
@@ -36,31 +38,37 @@ function ProductListPage() {
 	}
 
 	async function handleSortFetch(direction) {
-		const response = await fetch(`/api/v1/users/products?direction=${direction}&field=title&page=1&pagesize=9`);
-		const json = await response.json();
-		setAllProducts(json);
+		// const response = await fetch(`/api/v1/users/products?direction=${direction}&field=title&page=1&pagesize=9`);
+		// const json = await response.json();
+		// setAllProducts(json);
+		setSort(direction);
 	}
 
-	async function handleCategoryFetch(field) {
-		const response = await fetch(`/api/v1/users/products/category?category=${field}&page=1&pagesize=9`);
-		const json = await response.json();
-		setAllProducts(json);
+	async function handleCategoryFetch(link) {
+		// const response = await fetch(`/api/v1/users/products/category?category=${field}&page=1&pagesize=9&direction=${sort}`);
+		// const json = await response.json();
+		// setAllProducts(json);
+		console.log("category fetch");
+		setLink(link);
 	}
 
 	async function handlePriceFetch(priceObj) { //Object { min: 449, max: 1000 }
-		let minPrice = priceObj.min;
-		let maxPrice = priceObj.max;
-		const response = await fetch(`/api/v1/users/products/price?direction=ASC&page=1&pagesize=9&min=${minPrice}&max=${maxPrice}`);
-		// /api/v1/users/products/price?direction=ASC&page=1&pagesize=9&min=1&max=5000
-		const json = await response.json();
-		setAllProducts(json);
+		// let minPrice = priceObj.min;
+		// let maxPrice = priceObj.max;
+		// const response = await fetch(`/api/v1/users/products/price?direction=${sort}&page=1&pagesize=9&min=${minPrice}&max=${maxPrice}`);
+		// // /api/v1/users/products/price?direction=ASC&page=1&pagesize=9&min=1&max=5000
+		// const json = await response.json();
+		// setAllProducts(json);
+		console.log("price fetch");
 	}
 
-	async function handleRatingFetch(ratingId) {
-		const response = await fetch(`/api/v1/users/products?direction=ASC&field=${ratingId}&page=1&pagesize=9`);
-		// /api/v1/users/products?direction=ASC&field=${ratingId}&page=1&pagesize=9
-		const json = await response.json();
-		setAllProducts(json);
+	async function handleRatingFetch(link) {
+		// const response = await fetch(`/api/v1/users/products?direction=ASC&field=${ratingId}&page=1&pagesize=9`);
+		// // /api/v1/users/products?direction=ASC&field=${ratingId}&page=1&pagesize=9
+		// const json = await response.json();
+		// setAllProducts(json);
+		setLink(link);
+		console.log("rating fetch");
 	}
 
 
