@@ -4,11 +4,10 @@ import "./filter.css";
 import RangeBar from "../RangeBar/RangeBar";
 import arrowDown from "../../assets/arrow-down.png";
 import arrowRight from "../../assets/arrow-right.png";
-// import starBlack from "../../assets/star-black.png";
-// import starBlack from "../../assets/star-grey.png";
 import starBlack from "../../assets/star-grey-darker.png";
 
-function Filter() {
+function Filter(props) {
+	const { handleCategoryFetch, handlePriceFetch, handleRatingFetch } = props;
 	const [isFilterClicked, setIsFilterClicked] = useState(false);
 	const [isCategoryClicked, setIsCategoryClicked] = useState(false);
 	const [isRatingClicked, setIsRatingClicked] = useState(false);
@@ -89,6 +88,8 @@ function Filter() {
 
 	function CategoryButton() {
 		function handleCategoryChange(event) {
+			const field = event.target.value;
+			handleCategoryFetch(field);
 			console.log(event.target.value);
 		}
 
@@ -97,12 +98,12 @@ function Filter() {
 				<div>
 					<form className="category-form">
 						<label className='category-radio-label'>
-							<input className='category-radio' type="radio" name="category" onChange={handleCategoryChange} value="women's clothing" />
+							<input className='category-radio' type="radio" name="category" onChange={handleCategoryChange} value="women's+clothing" />
 							Women’s Clothing
 						</label>
 
 						<label className='category-radio-label'>
-							<input className='category-radio'  type="radio" name="category" onChange={handleCategoryChange} value="men's clothing" />
+							<input className='category-radio'  type="radio" name="category" onChange={handleCategoryChange} value="men's+clothing" />
 							Men’s Clothing
 						</label>
 
@@ -124,8 +125,16 @@ function Filter() {
 	}
 
 	function RatingButton() {
+		// const rating01 = "0.0";//{min: 0, max: 1.0};
+		// const rating02 = {min: 1.1, max: 2.0};
+		// const rating03 = {min: 2.1, max: 3.0};
+		// const rating04 = {min: 3.1, max: 4.0};
+		// const rating05 = {min: 4.1, max: 5.0};
+
 		function handleRatingChange(event) {
 			console.log(event.target.value);
+			// const ratingId = event.target.value;
+			// handleRatingFetch(rating01);
 		}
 
 		if (isRatingClicked) {
@@ -133,29 +142,25 @@ function Filter() {
 				<div>
 					<form className="rating-form">
 						<label className='rating-radio-label'>
-							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="rating from 0 to 1" />
+							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="{min: 1.1, max: 2.0}" />
 							<img src={starBlack} alt="" /> 
-							{/* 0 - 1 */}
 						</label>
 
 						<label className='rating-radio-label'>
-							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="rating from 1.1 to 2" />
-							<img src={starBlack} alt="" />
-							<img src={starBlack} alt="" />
-							{/* 1.1 - 2 */}
-						</label>
-
-						<label className='rating-radio-label'>
-							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="rating from 2.1 to 3" />
-							{/* 2.1 - 3 */}
-							<img src={starBlack} alt="" />
+							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="{min: 1.1, max: 2.0}" />
 							<img src={starBlack} alt="" />
 							<img src={starBlack} alt="" />
 						</label>
 
 						<label className='rating-radio-label'>
-							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="rating from 3.1 to 4" />
-							{/* 3.1 - 4 */}
+							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="{min: 2.1, max: 3.0}" />
+							<img src={starBlack} alt="" />
+							<img src={starBlack} alt="" />
+							<img src={starBlack} alt="" />
+						</label>
+
+						<label className='rating-radio-label'>
+							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="{min: 3.1, max: 4.0}" />
 							<img src={starBlack} alt="" />
 							<img src={starBlack} alt="" />
 							<img src={starBlack} alt="" />
@@ -163,8 +168,7 @@ function Filter() {
 						</label>
 
 						<label className='rating-radio-label'>
-							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="rating from 4.1 to 5" />
-							{/* 4.1 - 5 */}
+							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="{min: 4.1, max: 5.0}" />
 							<img src={starBlack} alt="" />
 							<img src={starBlack} alt="" />
 							<img src={starBlack} alt="" />
@@ -180,51 +184,100 @@ function Filter() {
 	}
 
 	function PriceButton() {
+		const priceObject01 = {min: 0, max: 50};
+		const priceObject02 = {min: 51, max: 100};
+		const priceObject03 = {min: 101, max: 300};
+		const priceObject04 = {min: 301, max: 800};
+		const priceObject05 = {min: 801, max: 1200};
+		const priceObject06 = {min: 1201, max: 3000};
+		const priceObject07 = {min: 3001, max: 5000};
+
+		function handlePriceChange01() {
+			handlePriceFetch(priceObject01);
+		}
+		function handlePriceChange02() {
+			handlePriceFetch(priceObject02);
+		}
+		function handlePriceChange03() {
+			handlePriceFetch(priceObject03);
+		}
+		function handlePriceChange04() {
+			handlePriceFetch(priceObject04);
+		}
+		function handlePriceChange05() {
+			handlePriceFetch(priceObject05);
+		}
+		function handlePriceChange06() {
+			handlePriceFetch(priceObject06);
+		}
+		function handlePriceChange07() {
+			handlePriceFetch(priceObject07);
+		}
 	
+		/**
+		 * 	if (event.target.value === priceObject01) {
+				console.log("priceObject01");
+				handlePriceFetch(priceObject01);
+			} else if (event.target.value === priceObject02) {
+				console.log("priceObject02");
+				handlePriceFetch(priceObject02);
+			} else if (event.target.value === priceObject03) {
+				console.log("priceObject03");
+				handlePriceFetch(priceObject03);
+			} else if (event.target.value === priceObject04) {
+				console.log("priceObject04");
+				handlePriceFetch(priceObject04);	
+			} else if (event.target.value === priceObject05) { 
+				console.log("priceObject05");
+				handlePriceFetch(priceObject05);
+			} else if (event.target.value === priceObject06) {
+				console.log("priceObject06");
+				handleCategoryFetch(priceObject06);
+			} else if (event.target.value === priceObject07) {
+				console.log("priceObject07");
+				handlePriceFetch(priceObject07);
+			}
+		 */
 		if (isPriceClicked) {
 			return (
 				<>
-					<RangeBar />
-					{/* <input type="range" min="0" max="5" value={value} onChange={(e) => setValue(e.target.value)} />
-                        {value}
-						 */}
-
-					{/* <form className="price-form">
+					{/* <RangeBar handlePriceFetch={handlePriceFetch} /> */}
+					<form className="price-form">
 						<label>
-							<input type="radio" name="price" onChange={handlePriceChange} value="price from 0 to 10" />
-							0€ to 10€
+							<input type="radio" name="price" onChange={handlePriceChange01} value={priceObject01} />
+							0€ to 50€
 						</label>
 
 						<label>
-							<input type="radio" name="price" onChange={handlePriceChange} value="price from 11 to 20" />
-							11€ to 20€
-						</label>
-
-						<label>
-							<input type="radio" name="price" onChange={handlePriceChange} value="price from 21 to 50" />
-							21€ to 50€
-						</label>
-
-						<label>
-							<input type="radio" name="price" onChange={handlePriceChange} value="price from 51 to 100" />
+							<input type="radio" name="price" onChange={handlePriceChange02} value={priceObject02} />
 							51€ to 100€
 						</label>
 
 						<label>
-							<input type="radio" name="price" onChange={handlePriceChange} value="price from 51 to 100" />
-							51€ to 100€
+							<input type="radio" name="price" onChange={handlePriceChange03} value={priceObject03} />
+							101€ to 300€
 						</label>
 
 						<label>
-							<input type="radio" name="price" onChange={handlePriceChange} value="price from 101 to 500" />
-							101 to 500€
+							<input type="radio" name="price" onChange={handlePriceChange04} value={priceObject04} />
+							301€ to 800€
 						</label>
 
 						<label>
-							<input type="radio" name="price" onChange={handlePriceChange} value="more than 500" />
-							more than 500€
+							<input type="radio" name="price" onChange={handlePriceChange05} value={priceObject05} />
+							801€ to 1200€
 						</label>
-					</form> */}
+
+						<label>
+							<input type="radio" name="price" onChange={handlePriceChange06} value={priceObject06} />
+							1201 to 3000€
+						</label>
+
+						<label>
+							<input type="radio" name="price" onChange={handlePriceChange07} value={priceObject07} />
+							3001 to 5000€
+						</label>
+					</form>
 				</>
 			);
 		} else {

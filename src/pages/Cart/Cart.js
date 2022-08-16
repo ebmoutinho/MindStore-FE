@@ -160,7 +160,7 @@ function CartPage() {
 					<div className="discount-container">
 						<form className="discount-container-form" onSubmit={handleDiscount}>
 							<label className="discount-label-cart" htmlFor="discount-code">
-								<input type="text" name="discount-code" ref={discountCode} placeholder="Enter your discount code" />
+								<input type="text" name="discount-code" ref={discountCode} placeholder="Enter discount code" />
 							</label>
 							<button className="payment-submit-button" type="submit">Submit</button>
 						</form>
