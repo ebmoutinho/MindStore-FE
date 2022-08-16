@@ -12,6 +12,7 @@ function ProductListPage() {
 	const [allProducts, setAllProducts] = useState([]);
 	const inputSearch = useRef("");
 
+
 	function handleEnterPress(event) {
 		if (event.key === "Enter") {
 			console.log(inputSearch.current.value, "enter press here! ");
@@ -49,6 +50,12 @@ function ProductListPage() {
 		)
 	});
 
+	async function handleSearchBar() {
+		const response = await fetch(`/api/v1/users/products/name?title=${inputSearch.current.value}&page=1&pagesize=6`);
+		const json = await response.json();
+		setAllProducts(json);
+	}
+
 	return (
 		<>
 			<Header productPageColor={productPageColor} />
@@ -61,7 +68,7 @@ function ProductListPage() {
 				<div className="first-grid">
 					<div className="inner-search-div">
 						<label className="label-flex">
-							<input className="search-div" type="text" placeholder="Search" ref={inputSearch} onKeyPress={handleEnterPress} />
+							<input className="search-div" type="text" placeholder="Search" ref={inputSearch} onKeyPress={handleEnterPress} onChange={handleSearchBar} />
 							<a href="#" onClick={handleIconClick}>
 								<img className="search-icon" src={searchBar} alt="" />
 							</a>
