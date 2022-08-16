@@ -260,39 +260,39 @@ function Filter(props) {
 				<>
 					{/* <RangeBar handlePriceFetch={handlePriceFetch} /> */}
 					<form className="price-form">
-						<label>
-							<input type="radio" name="price" onChange={() => handlePriceChange(priceObject01)} value={priceObject01} />
-							0€ to 50€
+						<label className='rating-radio-label'>
+							<input className='rating-radio' type="radio" name="price" onChange={() => handlePriceChange(priceObject01)} value={priceObject01} />
+							0€ &nbsp; to &nbsp;  50€
 						</label>
 
-						<label>
-							<input type="radio" name="price" onChange={() => handlePriceChange(priceObject02)} value={priceObject02} />
-							51€ to 100€
+						<label className='rating-radio-label'>
+							<input className='rating-radio' type="radio" name="price" onChange={() => handlePriceChange(priceObject02)} value={priceObject02} />
+							51€ &nbsp; to &nbsp; 100€
 						</label>
 
-						<label>
-							<input type="radio" name="price" onChange={() => handlePriceChange(priceObject03)} value={priceObject03} />
-							101€ to 300€
+						<label className='rating-radio-label'>
+							<input className='rating-radio' type="radio" name="price" onChange={() => handlePriceChange(priceObject03)} value={priceObject03} />
+							101€ &nbsp; to &nbsp; 300€
 						</label>
 
-						<label>
-							<input type="radio" name="price" onChange={() => handlePriceChange(priceObject04)} value={priceObject04} />
-							301€ to 800€
+						<label className='rating-radio-label'>
+							<input className='rating-radio' type="radio" name="price" onChange={() => handlePriceChange(priceObject04)} value={priceObject04} />
+							301€ &nbsp; to &nbsp; 800€
 						</label>
 
-						<label>
-							<input type="radio" name="price" onChange={() => handlePriceChange(priceObject05)} value={priceObject05} />
-							801€ to 1200€
+						<label className='rating-radio-label'>
+							<input className='rating-radio' type="radio" name="price" onChange={() => handlePriceChange(priceObject05)} value={priceObject05} />
+							801€ &nbsp; to &nbsp; 1200€
 						</label>
 
-						<label>
-							<input type="radio" name="price" onChange={() => handlePriceChange(priceObject06)} value={priceObject06} />
-							1201 to 3000€
+						<label className='rating-radio-label'>
+							<input className='rating-radio' type="radio" name="price" onChange={() => handlePriceChange(priceObject06)} value={priceObject06} />
+							1201€ &nbsp; to &nbsp; 3000€
 						</label>
 
-						<label>
-							<input type="radio" name="price" onChange={() => handlePriceChange(priceObject07)} value={priceObject07} />
-							3001 to 5000€
+						<label className='rating-radio-label'>
+							<input className='rating-radio' type="radio" name="price" onChange={() => handlePriceChange(priceObject07)} value={priceObject07} />
+							3001€ &nbsp; to &nbsp; 5000€
 						</label>
 					</form>
 				</>
