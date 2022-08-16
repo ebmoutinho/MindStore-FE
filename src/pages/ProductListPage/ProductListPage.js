@@ -24,16 +24,39 @@ function ProductListPage() {
 	}
 
 	async function handleSortFetch(direction) {
-		const response = await fetch(`/api/v1/users/products?direction=${direction}&field=title&page=1&pagesize=9`)
+		const response = await fetch(`/api/v1/users/products?direction=${direction}&field=title&page=1&pagesize=9`);
 		const json = await response.json();
 		setAllProducts(json);
 	}
+
+	async function handleCategoryFetch(field) {
+		const response = await fetch(`/api/v1/users/products/category?category=${field}&page=1&pagesize=9`);
+		const json = await response.json();
+		setAllProducts(json);
+	}
+
+	async function handlePriceFetch(priceObj) { //Object { min: 449, max: 1000 }
+		let minPrice = priceObj.min;
+		let maxPrice = priceObj.max;
+		const response = await fetch(`/api/v1/users/products/price?direction=ASC&page=1&pagesize=9&min=${minPrice}&max=${maxPrice}`);
+		// /api/v1/users/products/price?direction=ASC&page=1&pagesize=9&min=1&max=5000
+		const json = await response.json();
+		setAllProducts(json);
+	}
+
+	async function handleRatingFetch(ratingId) {
+		const response = await fetch(`/api/v1/users/products?direction=ASC&field=${ratingId}&page=1&pagesize=9`);
+		// /api/v1/users/products?direction=ASC&field=${ratingId}&page=1&pagesize=9
+		const json = await response.json();
+		setAllProducts(json);
+	}
+	
 
 	useEffect(() => {
 		setProductPageColor(true);
 
 		async function fetchAllProducts() {
-			const response = await fetch("/api/v1/users/products?direction=ASC&field=title&page=1&pagesize=9");
+			const response = await fetch("/api/v1/users/products?direction=DESC&field=title&page=1&pagesize=9");
 			const products = await response.json();
 			setAllProducts(products);
 
@@ -62,7 +85,7 @@ function ProductListPage() {
 
 			<div className="product-list-container">
 
-				<Sidebar className="sidebar" handleSortFetch={handleSortFetch} />
+				<Sidebar className="sidebar" handleSortFetch={handleSortFetch} handleCategoryFetch={handleCategoryFetch} handlePriceFetch={handlePriceFetch} handleRatingFetch={handleRatingFetch} />
 
 
 				<div className="first-grid">

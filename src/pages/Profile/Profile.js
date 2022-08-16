@@ -28,7 +28,7 @@ function Profile() {
 	let interEmail = "";
 	let interPassword = "";
 	let interAddress = "";
-	let interImage = "";
+	// let interImage = "";
 
 	useEffect(() => {
 		const fetchedId = localStorage.getItem("Id");
@@ -86,12 +86,12 @@ function Profile() {
 			interAddress = address.current.value;
 		}
 
-		if (image.current.value === "") {
-			interImage = userData.image;
-		} else {
-			interImage = image.current.value;
-		}
-		console.log("print info:", interFirst, interLast, interEmail, interPassword, interAddress, interImage);
+		// if (image.current.value === "") {
+		// 	interImage = userData.image;
+		// } else {
+		// 	interImage = image.current.value;
+		// }
+		console.log("print info:", interFirst, interLast, interEmail, interPassword, interAddress);
 
 		const request = {
 			method: "PATCH",
@@ -102,7 +102,7 @@ function Profile() {
 				email: interEmail, //email.current.value,
 				password: interPassword, // password.current.value,
 				address: interAddress, //address.current.value,
-				image: interImage, //image.current.value
+				// image: interImage, //image.current.value
 			}),
 		};
 
@@ -170,9 +170,9 @@ function Profile() {
 							{/* <label className="label">
 									<input type="tel" name="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" placeholder="Phone Number" minLength={9} maxLength={9} ref={phone} required />
 								</label> */}
-							<label className="label">
+							{/* <label className="label">
 								<input type="url" name="url" id="url" placeholder="https://add-your-profile-picture.com" size="200" ref={image}></input>
-							</label>
+							</label> */}
 							<div className="btn-flex btn-flex-margin">
 								<button className="button btn-cancel" onClick={handleCancelEditProfile}>
 									Cancel
