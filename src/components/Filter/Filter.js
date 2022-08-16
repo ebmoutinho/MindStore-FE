@@ -245,89 +245,53 @@ function Filter(props) {
 		const priceObject06 = {min: 1201, max: 3000};
 		const priceObject07 = {min: 3001, max: 5000};
 
-		function handlePriceChange01() {
-			handlePriceFetch(priceObject01);
+		function handlePriceChange(priceObject) {
+			const min = priceObject.min;
+			const max = priceObject.max;
+			console.log(min, max);
+			//   /price?page=1&pagesize=9&min=0&max=5000&direction=ASC
+			const link =`/price?page=1&pagesize=9&min=${min}&max=${max}&direction=`;
+			handlePriceFetch(link);
 		}
-		function handlePriceChange02() {
-			handlePriceFetch(priceObject02);
-		}
-		function handlePriceChange03() {
-			handlePriceFetch(priceObject03);
-		}
-		function handlePriceChange04() {
-			handlePriceFetch(priceObject04);
-		}
-		function handlePriceChange05() {
-			handlePriceFetch(priceObject05);
-		}
-		function handlePriceChange06() {
-			handlePriceFetch(priceObject06);
-		}
-		function handlePriceChange07() {
-			handlePriceFetch(priceObject07);
-		}
+
 	
-		/**
-		 * 	if (event.target.value === priceObject01) {
-				console.log("priceObject01");
-				handlePriceFetch(priceObject01);
-			} else if (event.target.value === priceObject02) {
-				console.log("priceObject02");
-				handlePriceFetch(priceObject02);
-			} else if (event.target.value === priceObject03) {
-				console.log("priceObject03");
-				handlePriceFetch(priceObject03);
-			} else if (event.target.value === priceObject04) {
-				console.log("priceObject04");
-				handlePriceFetch(priceObject04);	
-			} else if (event.target.value === priceObject05) { 
-				console.log("priceObject05");
-				handlePriceFetch(priceObject05);
-			} else if (event.target.value === priceObject06) {
-				console.log("priceObject06");
-				handleCategoryFetch(priceObject06);
-			} else if (event.target.value === priceObject07) {
-				console.log("priceObject07");
-				handlePriceFetch(priceObject07);
-			}
-		 */
 		if (isPriceClicked) {
 			return (
 				<>
 					{/* <RangeBar handlePriceFetch={handlePriceFetch} /> */}
 					<form className="price-form">
 						<label>
-							<input type="radio" name="price" onChange={handlePriceChange01} value={priceObject01} />
+							<input type="radio" name="price" onChange={() => handlePriceChange(priceObject01)} value={priceObject01} />
 							0€ to 50€
 						</label>
 
 						<label>
-							<input type="radio" name="price" onChange={handlePriceChange02} value={priceObject02} />
+							<input type="radio" name="price" onChange={() => handlePriceChange(priceObject02)} value={priceObject02} />
 							51€ to 100€
 						</label>
 
 						<label>
-							<input type="radio" name="price" onChange={handlePriceChange03} value={priceObject03} />
+							<input type="radio" name="price" onChange={() => handlePriceChange(priceObject03)} value={priceObject03} />
 							101€ to 300€
 						</label>
 
 						<label>
-							<input type="radio" name="price" onChange={handlePriceChange04} value={priceObject04} />
+							<input type="radio" name="price" onChange={() => handlePriceChange(priceObject04)} value={priceObject04} />
 							301€ to 800€
 						</label>
 
 						<label>
-							<input type="radio" name="price" onChange={handlePriceChange05} value={priceObject05} />
+							<input type="radio" name="price" onChange={() => handlePriceChange(priceObject05)} value={priceObject05} />
 							801€ to 1200€
 						</label>
 
 						<label>
-							<input type="radio" name="price" onChange={handlePriceChange06} value={priceObject06} />
+							<input type="radio" name="price" onChange={() => handlePriceChange(priceObject06)} value={priceObject06} />
 							1201 to 3000€
 						</label>
 
 						<label>
-							<input type="radio" name="price" onChange={handlePriceChange07} value={priceObject07} />
+							<input type="radio" name="price" onChange={() => handlePriceChange(priceObject07)} value={priceObject07} />
 							3001 to 5000€
 						</label>
 					</form>
