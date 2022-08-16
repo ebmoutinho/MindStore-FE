@@ -10,9 +10,21 @@ import "./productlistpage.css";
 function ProductListPage() {
 	const [productPageColor, setProductPageColor] = useState(false);
 	const [allProducts, setAllProducts] = useState([]);
+	const [pageBtnValue, setPageBtnValue] = useState(1);
 	const inputSearch = useRef("");
 	const [sort, setSort] = useState("ASC");
 
+	useEffect(() => {
+		setProductPageColor(true);
+
+		async function fetchAllProducts() {
+			const response = await fetch(`/api/v1/users/products?direction=DESC&field=title&page=1&pagesize=9`);
+			const products = await response.json();
+			setAllProducts(products);
+			console.log("all products", products);
+		}
+		fetchAllProducts();
+	}, []);
 
 	function handleEnterPress(event) {
 		if (event.key === "Enter") {
@@ -52,20 +64,8 @@ function ProductListPage() {
 		const json = await response.json();
 		setAllProducts(json);
 	}
-	
 
-	useEffect(() => {
-		setProductPageColor(true);
 
-		async function fetchAllProducts() {
-			const response = await fetch("/api/v1/users/products?direction=DESC&field=title&page=1&pagesize=9");
-			const products = await response.json();
-			setAllProducts(products);
-
-			console.log("all products", products);
-		}
-		fetchAllProducts();
-	}, []);
 
 	const myArray = allProducts.map((product, index) => {
 		return (
@@ -79,6 +79,14 @@ function ProductListPage() {
 		const response = await fetch(`/api/v1/users/products/name?title=${inputSearch.current.value}&page=1&pagesize=6`);
 		const json = await response.json();
 		setAllProducts(json);
+	}
+
+	async function handlePageChange(event) {
+		setPageBtnValue(event.target.value);
+		const pageNumber = event.target.value;
+		const response = await fetch(`/api/v1/users/products?direction=DESC&field=title&page=${pageNumber}&pagesize=9`);
+		const products = await response.json();
+		setAllProducts(products);
 	}
 
 	return (
@@ -107,6 +115,12 @@ function ProductListPage() {
 						{myArray}
 					</div>
 				</div>
+			</div>
+
+			<div className="pagination">
+				<button value={1} onClick={handlePageChange} className={pageBtnValue === 1 ? "btn-page-numbers active" : "btn-page-numbers" }>1</button>
+				<button value={2} onClick={handlePageChange} className="btn-page-numbers">2</button>
+				<button value={3} onClick={handlePageChange} className="btn-page-numbers">3</button>
 			</div>
 
 			<Footer />
