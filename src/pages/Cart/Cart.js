@@ -25,7 +25,6 @@ function CartPage() {
 	useEffect(() => {
 		setCartColor(true);
 
-		
 		async function fetchAllProducts() {
 			const request = {
 				method: "GET",
@@ -34,14 +33,21 @@ function CartPage() {
 					"Authorization": localStorage.getItem("token")
 				},
 			};
-			
+
 			const response = await fetch(`/api/v1/users/shoppingcart/${id}`, request);
 			const products = await response.json();
+			if (products.length === 0) {
+				setCartEmpty(true);
+			} else {
+				setCartEmpty(false);
+			}
+			console.log(products)
 			setAllProducts(products);
 		}
 		fetchAllProducts();
+		fetchTotal();
 	}, []);
-	
+
 	async function fetchTotal() {
 		const request = {
 			method: "GET",
@@ -52,10 +58,13 @@ function CartPage() {
 		};
 
 		const response = await fetch(`/api/v1/users/shoppingcart/price/${id}`, request);
-		const text = await response.text();
-		setTotal(text);
+		const text = await response.text(); // text = 1000€
+		const removeEuroSymbol = text.split("€"); // text = ["1000", ""]
+		const finalPrice = Number(removeEuroSymbol[0]); // removeEuroSymbol[0] = "1000"
+		const roundedTotal = Math.round((finalPrice + Number.EPSILON) * 100) / 100;
+		setTotal(roundedTotal);
 	}
-	fetchTotal();
+
 
 	const productArray = allProducts.map((product, index) => {
 		return (
@@ -75,7 +84,6 @@ function CartPage() {
 		setDiscountClicked(true);
 		console.log("discount clicked");
 	}
-
 
 	async function handleRemove(productId) {
 		const request = {
@@ -107,14 +115,7 @@ function CartPage() {
 						<h2>Shopping Cart</h2>
 					</div>
 					<div className="main-products">
-						{isCartEmpty ?
-							// <p>you fucking car is empty</p> 
-							<EmptyCheckoutProduct />
-							:
-							productArray
-						}
-						{/* {productArray} */}
-
+						{isCartEmpty ? <EmptyCheckoutProduct /> : productArray}
 					</div>
 					<div className="main-footer">
 						<a href="/productlistpage">
@@ -125,15 +126,12 @@ function CartPage() {
 				</div>
 
 				<div className="secondary-container">
-
 					<div className="payment-container">
-
 						<div className="payment-header">
 							<h2>Summary</h2>
 							<div className="payment-header-info">
 								<p>Total:</p>
-								<p>{total}</p>
-
+								<p>{total} €</p>
 							</div>
 						</div>
 
@@ -154,7 +152,6 @@ function CartPage() {
 								<button className="payment-button-cart" type="submit">Checkout</button>
 							</form>
 						</div>
-
 					</div>
 
 					<div className="discount-container">
