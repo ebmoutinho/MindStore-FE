@@ -131,3 +131,9 @@
 .rotate {
     transform: rotate(180deg);
 }
+
+@media (max-width:  626px) {
+    .pagination {
+        margin: 0 auto 40px ;
+    }
+}

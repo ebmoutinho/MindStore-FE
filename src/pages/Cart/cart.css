@@ -168,8 +168,55 @@
     transition: ease-in-out 0.2s;
 }
 
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 @media (max-width: 1440px) {
     .payment-submit-button {
         padding: 13px 20px;
+    }
+}
+
+@media (max-width: 1300px) {
+    .cart-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
+    .secondary-container {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        padding-top: 30px;
+    }
+}
+
+@media (max-width: 686px) {
+    .cart-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
+    .main-container {
+        width: 100%;
+        padding-right: 0px;
+        padding-top: 59px;
+    }
+
+    .secondary-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding-top: 30px;
     }
 }
