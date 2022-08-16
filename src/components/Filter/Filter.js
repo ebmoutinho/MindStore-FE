@@ -89,7 +89,7 @@ function Filter(props) {
 	function CategoryButton() {
 		function handleCategoryChange(event) {
 			const field = event.target.value;
-			const link =`/category?category=${field}&page=1&pagesize=9&direction=`;
+			const link =`/category?category=${field}&pagesize=9&direction=`;
 			handleCategoryFetch(link);
 			console.log(event.target.value);
 		}
@@ -138,7 +138,7 @@ function Filter(props) {
 			console.log(min, max);
 			// const link =`/category?category=${field}&page=1&pagesize=9&direction=`;
 			///price?direction=ASC&page=1&pagesize=4&min=20&max=2000
-			const link =`/rating?page=1&pagesize=9&min=${min}&max=${max}&direction=`;
+			const link =`/rating?pagesize=9&min=${min}&max=${max}&direction=`;
 			handleRatingFetch(link);
 			console.log(event.target.value);
 		}
@@ -148,7 +148,7 @@ function Filter(props) {
 			console.log(min, max);
 			// const link =`/category?category=${field}&page=1&pagesize=9&direction=`;
 			///rating?direction=ASC&page=1&pagesize=4&min=20&max=2000
-			const link =`/rating?page=1&pagesize=9&min=${min}&max=${max}&direction=`;
+			const link =`/rating?pagesize=9&min=${min}&max=${max}&direction=`;
 			handleRatingFetch(link);
 			console.log(event.target.value);
 		}
@@ -158,7 +158,7 @@ function Filter(props) {
 			console.log(min, max);
 			// const link =`/category?category=${field}&page=1&pagesize=9&direction=`;
 			///rating?direction=ASC&page=1&pagesize=4&min=20&max=2000
-			const link =`/rating?page=1&pagesize=9&min=${min}&max=${max}&direction=`;
+			const link =`/rating?pagesize=9&min=${min}&max=${max}&direction=`;
 			handleRatingFetch(link);
 			console.log(event.target.value);
 		}
@@ -168,7 +168,7 @@ function Filter(props) {
 			console.log(min, max);
 			// const link =`/category?category=${field}&page=1&pagesize=9&direction=`;
 			///rating?direction=ASC&page=1&pagesize=4&min=20&max=2000
-			const link =`/rating?page=1&pagesize=9&min=${min}&max=${max}&direction=`;
+			const link =`/rating?pagesize=9&min=${min}&max=${max}&direction=`;
 			handleRatingFetch(link);
 			console.log(event.target.value);
 		}
@@ -178,7 +178,7 @@ function Filter(props) {
 			console.log(min, max);
 			// const link =`/category?category=${field}&page=1&pagesize=9&direction=`;
 			///rating?direction=ASC&page=1&pagesize=4&min=20&max=2000
-			const link =`/rating?page=1&pagesize=9&min=${min}&max=${max}&direction=`;
+			const link =`/rating?pagesize=9&min=${min}&max=${max}&direction=`;
 			handleRatingFetch(link);
 			console.log(event.target.value);
 		}
@@ -250,7 +250,7 @@ function Filter(props) {
 			const max = priceObject.max;
 			console.log(min, max);
 			//   /price?page=1&pagesize=9&min=0&max=5000&direction=ASC
-			const link =`/price?page=1&pagesize=9&min=${min}&max=${max}&direction=`;
+			const link =`/price?pagesize=9&min=${min}&max=${max}&direction=`;
 			handlePriceFetch(link);
 		}
 
