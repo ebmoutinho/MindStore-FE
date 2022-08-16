@@ -31,13 +31,13 @@ function Product(props) {
 						<img src={heartEmpty} alt="" />
 					</button>
 				</div>
+				<p className="product-rating">
+					{Math.round(rating?.rate * 10) / 10}
+					<img src={starFull} alt="" className="product-rating-star" />
+				</p>
 				<div className="product-description">
 					<p className="product-name">{productData.title}</p>
 					<div>
-						<p className="product-rating">
-							{Math.round(rating?.rate * 10) / 10}
-							<img src={starFull} alt="" className=""/>
-						</p>
 						<p className="product-price">{productData.price}€</p>
 					</div>
 				</div>
