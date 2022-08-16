@@ -28,10 +28,11 @@ function Profile() {
 	let interEmail = "";
 	let interPassword = "";
 	let interAddress = "";
-	// let interImage = "";
+	let interImage = "";
 
 	useEffect(() => {
 		const fetchedId = localStorage.getItem("Id");
+		console.log(userData);
 
 		setProfileColor(true);
 		async function fetchProfile() {
@@ -46,15 +47,15 @@ function Profile() {
 			const response = await fetch(`/api/v1/admins/users/${fetchedId}`, request);
 			const json = await response.json();
 			setUserData(json);
-			// console.log(json.image);
-			//ir buscar a photo a localStorage, SE TIVER
 		}
 		fetchProfile();
 	}, [newInfo]);
 
 	async function handleSaveProfileChanges(event) {
 		event.preventDefault();
-		console.log(image);
+		// console.log(image);
+
+		console.log("insidehandleSavePRofileChanges", userData, newInfo);
 
 		if (firstName.current.value === "") {
 			interFirst = userData.firstName;
@@ -86,12 +87,12 @@ function Profile() {
 			interAddress = address.current.value;
 		}
 
-		// if (image.current.value === "") {
-		// 	interImage = userData.image;
-		// } else {
-		// 	interImage = image.current.value;
-		// }
-		console.log("print info:", interFirst, interLast, interEmail, interPassword, interAddress);
+		if (image.current.value === "") {
+			interImage = userData.image;
+		} else {
+			interImage = image.current.value;
+		}
+		console.log("print info:", interFirst, interLast, interEmail, interPassword, interAddress, interImage);
 
 		const request = {
 			method: "PATCH",
@@ -102,7 +103,7 @@ function Profile() {
 				email: interEmail, //email.current.value,
 				password: interPassword, // password.current.value,
 				address: interAddress, //address.current.value,
-				// image: interImage, //image.current.value
+				image: interImage, //image.current.value
 			}),
 		};
 
@@ -116,6 +117,9 @@ function Profile() {
 			setNewInfo(true);
 			setUserData(newUserData);
 			setMessage("Your changes were successfully saved!");
+
+			setChangesSaved(true);
+			setEditProfile(!editProfile);
 		} else {
 			setMessage("Oops! Something went wrong while trying to update your profile");
 		}
@@ -126,8 +130,8 @@ function Profile() {
 		setEditProfile(!editProfile);
 	}
 	function handleSaveChangesButton() {
-		console.log("button to Save Changes");
-		setChangesSaved(true);
+		// console.log("button to Save Changes");
+		// setChangesSaved(true);
 		// setEditProfile(!editProfile);
 	}
 
@@ -170,9 +174,9 @@ function Profile() {
 							{/* <label className="label">
 									<input type="tel" name="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" placeholder="Phone Number" minLength={9} maxLength={9} ref={phone} required />
 								</label> */}
-							{/* <label className="label">
-								<input type="url" name="url" id="url" placeholder="https://add-your-profile-picture.com" size="200" ref={image}></input>
-							</label> */}
+							<label className="label">
+								<input type="url" name="url" id="url" placeholder="https://add-your-profile-picture.com" pattern="https://.*" size="900" ref={image}></input>
+							</label>
 							<div className="btn-flex btn-flex-margin">
 								<button className="button btn-cancel" onClick={handleCancelEditProfile}>
 									Cancel
