@@ -11,6 +11,7 @@ function ProductListPage() {
 	const [productPageColor, setProductPageColor] = useState(false);
 	const [allProducts, setAllProducts] = useState([]);
 	const inputSearch = useRef("");
+	const [sort, setSort] = useState("ASC");
 
 
 	function handleEnterPress(event) {
@@ -24,13 +25,14 @@ function ProductListPage() {
 	}
 
 	async function handleSortFetch(direction) {
-		const response = await fetch(`/api/v1/users/products?direction=${direction}&field=title&page=1&pagesize=9`);
-		const json = await response.json();
-		setAllProducts(json);
+		// const response = await fetch(`/api/v1/users/products?direction=${direction}&field=title&page=1&pagesize=9`);
+		// const json = await response.json();
+		// setAllProducts(json);
+		setSort(direction);
 	}
 
 	async function handleCategoryFetch(field) {
-		const response = await fetch(`/api/v1/users/products/category?category=${field}&page=1&pagesize=9`);
+		const response = await fetch(`/api/v1/users/products/category?category=${field}&page=1&pagesize=9&direction=${sort}`);
 		const json = await response.json();
 		setAllProducts(json);
 	}
@@ -38,7 +40,7 @@ function ProductListPage() {
 	async function handlePriceFetch(priceObj) { //Object { min: 449, max: 1000 }
 		let minPrice = priceObj.min;
 		let maxPrice = priceObj.max;
-		const response = await fetch(`/api/v1/users/products/price?direction=ASC&page=1&pagesize=9&min=${minPrice}&max=${maxPrice}`);
+		const response = await fetch(`/api/v1/users/products/price?direction=${sort}&page=1&pagesize=9&min=${minPrice}&max=${maxPrice}`);
 		// /api/v1/users/products/price?direction=ASC&page=1&pagesize=9&min=1&max=5000
 		const json = await response.json();
 		setAllProducts(json);
