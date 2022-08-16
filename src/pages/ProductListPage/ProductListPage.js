@@ -11,7 +11,20 @@ function ProductListPage() {
 	const [productPageColor, setProductPageColor] = useState(false);
 	const [allProducts, setAllProducts] = useState([]);
 	const inputSearch = useRef("");
+	const [pageClicked, setPageClicked] = useState(1);
 
+	useEffect(() => {
+		setProductPageColor(true);
+
+		async function fetchAllProducts() {
+			const response = await fetch(`/api/v1/users/products?direction=DESC&field=title&page=1&pagesize=9`);
+			const products = await response.json();
+			setAllProducts(products);
+
+			console.log("all products", products);
+		}
+		fetchAllProducts();
+	}, []);
 
 	function handleEnterPress(event) {
 		if (event.key === "Enter") {
@@ -50,20 +63,8 @@ function ProductListPage() {
 		const json = await response.json();
 		setAllProducts(json);
 	}
-	
 
-	useEffect(() => {
-		setProductPageColor(true);
 
-		async function fetchAllProducts() {
-			const response = await fetch("/api/v1/users/products?direction=DESC&field=title&page=1&pagesize=9");
-			const products = await response.json();
-			setAllProducts(products);
-
-			console.log("all products", products);
-		}
-		fetchAllProducts();
-	}, []);
 
 	const myArray = allProducts.map((product, index) => {
 		return (
@@ -77,6 +78,13 @@ function ProductListPage() {
 		const response = await fetch(`/api/v1/users/products/name?title=${inputSearch.current.value}&page=1&pagesize=6`);
 		const json = await response.json();
 		setAllProducts(json);
+	}
+
+	async function handlePageChange(event) {
+		const pageNumber = event.target.value;
+		const response = await fetch(`/api/v1/users/products?direction=DESC&field=title&page=${pageNumber}&pagesize=9`);
+		const products = await response.json();
+		setAllProducts(products);
 	}
 
 	return (
@@ -105,6 +113,24 @@ function ProductListPage() {
 						{myArray}
 					</div>
 				</div>
+			</div>
+
+			<div className="pagination">
+				<label htmlFor="page1">
+					<input type="radio" name="page" id="page1" value={1} onClick={handlePageChange} />
+					1
+				</label>
+
+				<label htmlFor="page2">
+					<input type="radio" name="page" id="page2" value={2} onClick={handlePageChange} />
+					2
+				</label>
+
+				<label htmlFor="page3">
+					<input type="radio" name="page" id="page2" value={3} onClick={handlePageChange} />
+					3
+				</label>
+
 			</div>
 
 			<Footer />
