@@ -10,6 +10,8 @@ function ProductDetailPage() {
     const { id } = useParams();
     const [productData, setProductData] = useState({});
     const [productRating, setProductRating] = useState({});
+    let [productsToAdd, setProductsToAdd] = useState();
+
     const userId = localStorage.getItem('Id');
 
     useEffect(() => {
@@ -23,16 +25,30 @@ function ProductDetailPage() {
     }, []);
 
 
-    async function handleAddToUserCart() {
+    function handleAddToUserCart(quantity) {
+        console.log("product detail qty", quantity);
+        const newValue = quantity;
+        setProductsToAdd(newValue);
+    }
+
+    async function handleAddToUserCartFetch() {
         const productId = productData.id;
         const request = {
             method: "PATCH",
             headers: { "Content-Type": "application/json", "Authorization": localStorage.getItem("token") },
-        }; 
+        };
 
-        const response = await fetch(`/api/v1/users/addtocart?userid=${userId}&productid=${productId}`, request);
-        const json = await response.json();
-        console.log("product added to user cart",json);
+        // martelada que funciona
+        if (productsToAdd === undefined) { 
+            productsToAdd = 1;
+        }
+        
+
+        for (let i = 0; i < productsToAdd; i++) {
+            const response = await fetch(`/api/v1/users/addtocart?userid=${userId}&productid=${productId}`, request);
+            const json = await response.json();
+            console.log("product added to user cart", json);
+        }
     }
 
     return (
@@ -59,10 +75,10 @@ function ProductDetailPage() {
                     <p className='product-detail_description'>{productData.description}</p>
 
                     <div className="product-detail_cart-options">
-                        <QuantityButton />
+                        <QuantityButton handleAddToUserCart={handleAddToUserCart} />
 
                         <div>
-                            <Link to={`/cart/${userId}`} className="product-detail_cart-button" onClick={handleAddToUserCart}>Add to Cart</Link>
+                            <Link to={`/cart/${userId}`} className="product-detail_cart-button" onClick={handleAddToUserCartFetch}>Add to Cart</Link>
                         </div>
                     </div>
                 </div>
