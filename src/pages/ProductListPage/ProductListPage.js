@@ -48,7 +48,7 @@ function ProductListPage() {
 		// const response = await fetch(`/api/v1/users/products/category?category=${field}&page=1&pagesize=9&direction=${sort}`);
 		// const json = await response.json();
 		// setAllProducts(json);
-		console.log("ss")
+		console.log("category fetch");
 		setLink(link);
 	}
 
@@ -59,13 +59,16 @@ function ProductListPage() {
 		// // /api/v1/users/products/price?direction=ASC&page=1&pagesize=9&min=1&max=5000
 		// const json = await response.json();
 		// setAllProducts(json);
+		console.log("price fetch");
 	}
 
-	async function handleRatingFetch(ratingId) {
+	async function handleRatingFetch(link) {
 		// const response = await fetch(`/api/v1/users/products?direction=ASC&field=${ratingId}&page=1&pagesize=9`);
 		// // /api/v1/users/products?direction=ASC&field=${ratingId}&page=1&pagesize=9
 		// const json = await response.json();
 		// setAllProducts(json);
+		setLink(link);
+		console.log("rating fetch");
 	}
 
 

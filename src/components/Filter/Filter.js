@@ -126,16 +126,61 @@ function Filter(props) {
 	}
 
 	function RatingButton() {
-		// const rating01 = "0.0";//{min: 0, max: 1.0};
-		// const rating02 = {min: 1.1, max: 2.0};
-		// const rating03 = {min: 2.1, max: 3.0};
-		// const rating04 = {min: 3.1, max: 4.0};
-		// const rating05 = {min: 4.1, max: 5.0};
+		const rating01 = {min: 0, max: 1};
+		const rating02 = {min: 1, max: 2};
+		const rating03 = {min: 2, max: 3};
+		const rating04 = {min: 3, max: 4};
+		const rating05 = {min: 4, max: 5};
 
-		function handleRatingChange(event) {
+		function handleRatingChange01(event) {
+			const min = rating01.min;
+			const max = rating01.max;
+			console.log(min, max);
+			// const link =`/category?category=${field}&page=1&pagesize=9&direction=`;
+			///price?direction=ASC&page=1&pagesize=4&min=20&max=2000
+			const link =`/rating?page=1&pagesize=9&min=${min}&max=${max}&direction=`;
+			handleRatingFetch(link);
 			console.log(event.target.value);
-			// const ratingId = event.target.value;
-			// handleRatingFetch(rating01);
+		}
+		function handleRatingChange02(event) {
+			const min = rating02.min;
+			const max = rating02.max;
+			console.log(min, max);
+			// const link =`/category?category=${field}&page=1&pagesize=9&direction=`;
+			///rating?direction=ASC&page=1&pagesize=4&min=20&max=2000
+			const link =`/rating?page=1&pagesize=9&min=${min}&max=${max}&direction=`;
+			handleRatingFetch(link);
+			console.log(event.target.value);
+		}
+		function handleRatingChange03(event) {
+			const min = rating03.min;
+			const max = rating03.max;
+			console.log(min, max);
+			// const link =`/category?category=${field}&page=1&pagesize=9&direction=`;
+			///rating?direction=ASC&page=1&pagesize=4&min=20&max=2000
+			const link =`/rating?page=1&pagesize=9&min=${min}&max=${max}&direction=`;
+			handleRatingFetch(link);
+			console.log(event.target.value);
+		}
+		function handleRatingChange04(event) {
+			const min = rating04.min;
+			const max = rating04.max;
+			console.log(min, max);
+			// const link =`/category?category=${field}&page=1&pagesize=9&direction=`;
+			///rating?direction=ASC&page=1&pagesize=4&min=20&max=2000
+			const link =`/rating?page=1&pagesize=9&min=${min}&max=${max}&direction=`;
+			handleRatingFetch(link);
+			console.log(event.target.value);
+		}
+		function handleRatingChange05(event) {
+			const min = rating05.min;
+			const max = rating05.max;
+			console.log(min, max);
+			// const link =`/category?category=${field}&page=1&pagesize=9&direction=`;
+			///rating?direction=ASC&page=1&pagesize=4&min=20&max=2000
+			const link =`/rating?page=1&pagesize=9&min=${min}&max=${max}&direction=`;
+			handleRatingFetch(link);
+			console.log(event.target.value);
 		}
 
 		if (isRatingClicked) {
@@ -143,33 +188,40 @@ function Filter(props) {
 				<div>
 					<form className="rating-form">
 						<label className='rating-radio-label'>
-							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="{min: 1.1, max: 2.0}" />
+							{/* <input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="{min: 1.1, max: 2.0}" /> */}
+							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange01} value={rating01} />
 							<img src={starBlack} alt="" /> 
 						</label>
 
 						<label className='rating-radio-label'>
-							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="{min: 1.1, max: 2.0}" />
+							{/* <input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="{min: 1.1, max: 2.0}" /> */}
+							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange02} value={rating02} />
 							<img src={starBlack} alt="" />
 							<img src={starBlack} alt="" />
 						</label>
 
 						<label className='rating-radio-label'>
-							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="{min: 2.1, max: 3.0}" />
-							<img src={starBlack} alt="" />
-							<img src={starBlack} alt="" />
-							<img src={starBlack} alt="" />
-						</label>
-
-						<label className='rating-radio-label'>
-							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="{min: 3.1, max: 4.0}" />
-							<img src={starBlack} alt="" />
+							{/* <input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="{min: 2.1, max: 3.0}" /> */}
+							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange03} value={rating03} />
 							<img src={starBlack} alt="" />
 							<img src={starBlack} alt="" />
 							<img src={starBlack} alt="" />
 						</label>
 
 						<label className='rating-radio-label'>
-							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="{min: 4.1, max: 5.0}" />
+							{/* <input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="{min: 3.1, max: 4.0}" /> */}
+							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange04} value={rating04} />
+
+							<img src={starBlack} alt="" />
+							<img src={starBlack} alt="" />
+							<img src={starBlack} alt="" />
+							<img src={starBlack} alt="" />
+						</label>
+
+						<label className='rating-radio-label'>
+							{/* <input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange} value="{min: 4.1, max: 5.0}" /> */}
+							<input className='rating-radio' type="radio" name="rating" onChange={handleRatingChange05} value={rating05} />
+
 							<img src={starBlack} alt="" />
 							<img src={starBlack} alt="" />
 							<img src={starBlack} alt="" />
